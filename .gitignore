@@ -12,7 +12,12 @@ Thumbs.db
 .vscode/
 *.swp
 *.swo
+*~
 
 # Local files
 *.local
 *.log
+
+# Temporary files
+.tmp/
+temp/
