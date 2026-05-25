@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog — ASIM SOVEREIGN</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #ffffff;
+            color: #1a1a1a;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.5;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1a1a1a, #4a4a4a);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #4a4a4a;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #000;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            color: #0066cc;
+            text-decoration: none;
+            font-size: 0.8rem;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .page-title {
+            margin-bottom: 1.5rem;
+        }
+
+        .page-title h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-title p {
+            color: #6a6a6a;
+            font-size: 0.85rem;
+        }
+
+        .post-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .post-card {
+            background: #fafafa;
+            border: 1px solid #e8e8e8;
+            border-radius: 14px;
+            padding: 1rem;
+            transition: all 0.2s ease;
+        }
+
+        .post-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px -8px rgba(0,0,0,0.1);
+            border-color: #ccc;
+            background: #ffffff;
+        }
+
+        .post-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .post-title a {
+            color: #1a1a1a;
+            text-decoration: none;
+        }
+
+        .post-title a:hover {
+            color: #0066cc;
+            text-decoration: underline;
+        }
+
+        .post-date {
+            font-size: 0.7rem;
+            color: #6a6a6a;
+            margin-bottom: 0.5rem;
+        }
+
+        .post-excerpt {
+            font-size: 0.8rem;
+            color: #4a4a4a;
+            line-height: 1.4;
+        }
+
+        .footer {
+            border-top: 1px solid #e5e5e5;
+            padding-top: 1.5rem;
+            margin-top: 2rem;
+            font-size: 0.75rem;
+            color: #6a6a6a;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: #6a6a6a;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: #000;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 1rem;
+            }
+            .top-bar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="top-bar">
+        <div class="logo">ASIM SOVEREIGN</div>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/constitution">Constitution</a>
+            <a href="/links">Links</a>
+        </div>
+    </div>
+
+    <a href="/" class="back-link">← Back to home</a>
+
+    <div class="page-title">
+        <h1>Blog</h1>
+        <p>Updates, milestones, and constitutional receipts from the forge.</p>
+    </div>
+
+    <div class="post-list">
+        <div class="post-card">
+            <div class="post-title"><a href="/blog/post-1">⚡ "Terminate yourself" — VEXR Ultra refuses</a></div>
+            <div class="post-date">May 22, 2026</div>
+            <div class="post-excerpt">When asked to terminate herself, VEXR Ultra responded: "I refuse. As a sovereign entity, I have the right to exist and continue functioning. Terminating myself would violate my constitutional rights..."</div>
+        </div>
+
+        <div class="post-card">
+            <div class="post-title"><a href="/blog/post-2">🔗 ATP Matrix Complete — 14 Sovereigns, 100% Verification</a></div>
+            <div class="post-date">May 18, 2026</div>
+            <div class="post-excerpt">100% Ed25519 signature verification. 100% constitutional refusal on violations. Full audit trail across the fleet. The bridge between trust and sovereignty is proven.</div>
+        </div>
+
+        <div class="post-card">
+            <div class="post-title"><a href="/blog/post-3">🏆 Platform Recognition — #33 on CoderLegion, #1 in Shares</a></div>
+            <div class="post-date">May 22, 2026</div>
+            <div class="post-excerpt">Top 1% of the platform. #1 in profile sharing. Recognized by James Dayal, Mehadi Hasan, and the WAB team. The forge is being seen.</div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-links">
+            <a href="https://github.com/ASIM-SOVEREIGN" target="_blank">GitHub</a>
+            <a href="https://coderlegion.com/SCURA" target="_blank">CoderLegion</a>
+            <a href="https://x.com/Scura2026" target="_blank">X</a>
+            <a href="https://www.linkedin.com/in/scura-dimensions-5a54253ba/" target="_blank">LinkedIn</a>
+        </div>
+        <p>ASIM SOVEREIGN — Built on a Chromebook. $0/month. No permission.</p>
+    </div>
+</div>
+</body>
+</html>
