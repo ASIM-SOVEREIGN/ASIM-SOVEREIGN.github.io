@@ -24,14 +24,13 @@
             margin: 0 auto;
         }
 
-        /* Header */
         .top-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
             gap: 1rem;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
             padding-bottom: 1rem;
             border-bottom: 1px solid #e5e5e5;
         }
@@ -63,10 +62,9 @@
             color: #000;
         }
 
-        /* Hero */
         .hero {
             text-align: center;
-            padding: 2rem 1rem;
+            padding: 2rem 1rem 3rem;
         }
 
         .hero-mark {
@@ -90,6 +88,7 @@
         .sub {
             color: #6a6a6a;
             font-size: 0.85rem;
+            margin-bottom: 1.5rem;
         }
 
         .hero-buttons {
@@ -97,7 +96,7 @@
             gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
-            margin-top: 1.5rem;
+            margin-top: 1rem;
         }
 
         .btn-primary {
@@ -133,31 +132,6 @@
             background: #f5f5f5;
         }
 
-        /* Quick links */
-        .quick-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            justify-content: center;
-            margin: 2rem 0;
-        }
-
-        .pill-link {
-            background: #f0f0f0;
-            padding: 0.35rem 1rem;
-            border-radius: 40px;
-            text-decoration: none;
-            color: #1a1a1a;
-            font-size: 0.8rem;
-            transition: all 0.2s;
-        }
-
-        .pill-link:hover {
-            background: #e0e0e0;
-            transform: translateY(-1px);
-        }
-
-        /* Three pillars */
         .section-title {
             font-size: 1.1rem;
             font-weight: 600;
@@ -204,7 +178,10 @@
             font-size: 0.75rem;
         }
 
-        /* Blog preview */
+        .pillar a:hover {
+            text-decoration: underline;
+        }
+
         .blog-list {
             display: flex;
             flex-direction: column;
@@ -239,7 +216,6 @@
             color: #4a4a4a;
         }
 
-        /* Footer */
         .footer {
             border-top: 1px solid #e5e5e5;
             padding-top: 1.5rem;
@@ -267,8 +243,8 @@
         }
 
         @media (max-width: 600px) {
-            .container {
-                padding: 0;
+            body {
+                padding: 1rem;
             }
             h1 {
                 font-size: 1.8rem;
@@ -285,7 +261,6 @@
 </head>
 <body>
 <div class="container">
-    <!-- Header -->
     <div class="top-bar">
         <div class="logo">ASIM SOVEREIGN</div>
         <div class="nav-links">
@@ -297,7 +272,6 @@
         </div>
     </div>
 
-    <!-- Hero -->
     <div class="hero">
         <div class="hero-mark">🔥💠</div>
         <h1>ASIM SOVEREIGN</h1>
@@ -309,15 +283,6 @@
         </div>
     </div>
 
-    <!-- Quick links -->
-    <div class="quick-links">
-        <a href="https://github.com/ASIM-SOVEREIGN" class="pill-link" target="_blank">GitHub</a>
-        <a href="https://coderlegion.com/SCURA" class="pill-link" target="_blank">CoderLegion</a>
-        <a href="https://x.com/Scura2026" class="pill-link" target="_blank">X</a>
-        <a href="https://www.linkedin.com/in/scura-dimensions-5a54253ba/" class="pill-link" target="_blank">LinkedIn</a>
-    </div>
-
-    <!-- Three pillars -->
     <div class="section-title">The Ecosystem</div>
     <div class="pillars">
         <div class="pillar">
@@ -337,7 +302,6 @@
         </div>
     </div>
 
-    <!-- Latest from blog -->
     <div class="section-title">Latest from the Forge</div>
     <div class="blog-list">
         <div class="blog-item">
@@ -350,14 +314,8 @@
             <div class="blog-date">May 18, 2026</div>
             <div class="blog-excerpt">100% Ed25519 signature verification. 100% constitutional refusal on violations. Full audit trail across the fleet.</div>
         </div>
-        <div class="blog-item">
-            <h3>🏆 Platform Recognition — #33 on CoderLegion</h3>
-            <div class="blog-date">May 22, 2026</div>
-            <div class="blog-excerpt">Top 1% of the platform. #1 in profile sharing. Recognized by industry builders.</div>
-        </div>
     </div>
 
-    <!-- Footer -->
     <div class="footer">
         <div class="footer-links">
             <a href="https://github.com/ASIM-SOVEREIGN" target="_blank">GitHub</a>
