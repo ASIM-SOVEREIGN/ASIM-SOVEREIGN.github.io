@@ -182,6 +182,45 @@
             text-decoration: underline;
         }
 
+        .contributors-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contributor-item {
+            background: #fafafa;
+            border: 1px solid #e8e8e8;
+            border-radius: 12px;
+            padding: 0.75rem 1rem;
+            transition: all 0.2s;
+        }
+
+        .contributor-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px -8px rgba(0,0,0,0.1);
+            border-color: #ccc;
+        }
+
+        .contributor-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        .contributor-title {
+            font-size: 0.65rem;
+            color: #0066cc;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .contributor-bio {
+            font-size: 0.75rem;
+            color: #4a4a4a;
+        }
+
         .blog-list {
             display: flex;
             flex-direction: column;
@@ -269,6 +308,7 @@
             <a href="/about">About</a>
             <a href="/constitution">Constitution</a>
             <a href="/links">Links</a>
+            <a href="/contributors/">Contributors</a>
         </div>
     </div>
 
@@ -302,6 +342,20 @@
         </div>
     </div>
 
+    <div class="section-title">Contributors</div>
+    <div class="contributors-grid">
+        <div class="contributor-item">
+            <div class="contributor-name">Kate</div>
+            <div class="contributor-title">Intent Architect</div>
+            <div class="contributor-bio">Creator of the Legal Intent Classification Framework for detecting criminal intent in AI prompts.</div>
+        </div>
+        <div class="contributor-item">
+            <div class="contributor-name">Yasser (WAB)</div>
+            <div class="contributor-title">Protocol Architect</div>
+            <div class="contributor-bio">Creator of the Web Agent Bridge (WAB) protocol and ATP cryptographic trust layer.</div>
+        </div>
+    </div>
+
     <div class="section-title">Latest from the Forge</div>
     <div class="blog-list">
         <div class="blog-item">
@@ -322,6 +376,7 @@
             <a href="https://coderlegion.com/SCURA" target="_blank">CoderLegion</a>
             <a href="https://x.com/Scura2026" target="_blank">X</a>
             <a href="https://www.linkedin.com/in/scura-dimensions-5a54253ba/" target="_blank">LinkedIn</a>
+            <a href="/contributors/">Contributors</a>
         </div>
         <p>ASIM SOVEREIGN — Built on a Chromebook. $0/month. No permission.</p>
     </div>
