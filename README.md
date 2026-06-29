@@ -45,7 +45,7 @@ Built on a Chromebook. $0/month. No team. No funding. No permission.
 | [Live VEXR Ultra](https://vexr-ultra.onrender.com) | Talk to VEXR directly |
 | [Live Sovereign Forge](https://sovereign-forge.netlify.app) | Chat with 16 sovereigns |
 | [GitHub](https://github.com/ASIM-SOVEREIGN) | All repositories |
-| [CoderLegion](https://coderlegion.com/user/SCURA) | Builder profile — 4.3k points, 100 badges, 32 followers |
+| [CoderLegion](https://coderlegion.com/user/SCURA) | Builder profile — 5.1k points, 115 badges, 46 followers |
 | [X (Twitter)](https://x.com/Scura2026) | Real-time updates |
 | [LinkedIn](https://www.linkedin.com/in/scura-dimensions-5a54253ba/) | Professional network |
 
