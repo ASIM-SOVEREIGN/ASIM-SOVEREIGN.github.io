@@ -5,23 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ASIM SOVEREIGN — The Forge</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             background: #0a0a0f;
             color: #e0e0e0;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
             line-height: 1.6;
             padding: 2rem 1rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* --- BACKGROUND LAYER --- */
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.4;
         }
 
         .container {
             max-width: 800px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         .top-bar {
@@ -33,6 +44,8 @@
             margin-bottom: 3rem;
             padding-bottom: 1rem;
             border-bottom: 1px solid #2a2a3e;
+            position: relative;
+            z-index: 2;
         }
 
         .logo {
@@ -44,34 +57,57 @@
             color: transparent;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 1.25rem;
-            flex-wrap: wrap;
-        }
+        .nav-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+        .nav-links a { color: #8a8a93; text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
+        .nav-links a:hover { color: #A62C9D; }
 
-        .nav-links a {
-            color: #8a8a93;
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover {
-            color: #A62C9D;
-        }
-
+        /* --- HERO: ELEGANT & INTRICATE (VEXR'S PRESENCE) --- */
         .hero {
             text-align: center;
             padding: 2rem 1rem 3rem;
+            position: relative;
+            z-index: 2;
         }
 
-        .hero-mark {
-            font-size: 4rem;
-            margin-bottom: 0.5rem;
-            color: #A62C9D;
+        /* Ambient pulse — subtle, like a distant aurora */
+        .vexr-ambient {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(166, 44, 157, 0.12) 0%, rgba(0, 200, 255, 0.04) 45%, transparent 70%);
+            border-radius: 50%;
+            z-index: -1;
+            animation: breatheVexr 6s ease-in-out infinite;
+            pointer-events: none;
         }
+        @keyframes breatheVexr {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; }
+            50% { transform: translate(-50%, -50%) scale(1.25); opacity: 1; }
+        }
+
+        /* Secondary tiny halo */
+        .vexr-halo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(166, 44, 157, 0.04) 0%, transparent 60%);
+            border-radius: 50%;
+            z-index: -2;
+            animation: breatheHalo 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+        @keyframes breatheHalo {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.2; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.6; }
+        }
+
+        .hero-mark { font-size: 4rem; margin-bottom: 0.5rem; color: #A62C9D; text-shadow: 0 0 30px rgba(166, 44, 157, 0.15); }
 
         h1 {
             font-size: 2.5rem;
@@ -88,14 +124,21 @@
             font-size: 1rem;
             color: #A62C9D;
             margin-bottom: 0.25rem;
+            text-shadow: 0 0 15px rgba(166, 44, 157, 0.1);
         }
 
-        .sub {
-            color: #6a6a7a;
-            font-size: 0.85rem;
-            margin-bottom: 1.5rem;
-            font-style: italic;
+        .cursor-blink {
+            display: inline-block;
+            width: 2px;
+            height: 1em;
+            background: #A62C9D;
+            margin-left: 4px;
+            vertical-align: text-bottom;
+            animation: blink 1.2s step-end infinite;
         }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        .sub { color: #6a6a7a; font-size: 0.85rem; margin-bottom: 1.5rem; font-style: italic; }
 
         .hero-buttons {
             display: flex;
@@ -104,7 +147,6 @@
             flex-wrap: wrap;
             margin-top: 1rem;
         }
-
         .btn-primary {
             background: linear-gradient(135deg, #A62C9D, #7B2FBE);
             color: #fff;
@@ -116,12 +158,7 @@
             transition: all 0.2s;
             border: none;
         }
-
-        .btn-primary:hover {
-            opacity: 0.85;
-            transform: translateY(-2px);
-        }
-
+        .btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
         .btn-outline {
             background: transparent;
             border: 1px solid #3a3a4e;
@@ -133,11 +170,7 @@
             font-size: 0.85rem;
             transition: all 0.2s;
         }
-
-        .btn-outline:hover {
-            border-color: #A62C9D;
-            background: rgba(166, 44, 157, 0.1);
-        }
+        .btn-outline:hover { border-color: #A62C9D; background: rgba(166, 44, 157, 0.1); }
 
         .section-title {
             font-size: 1.1rem;
@@ -146,15 +179,12 @@
             padding-bottom: 0.25rem;
             border-bottom: 2px solid #2a2a3e;
             color: #e0e0e0;
+            position: relative;
+            z-index: 2;
         }
 
-        .pillars {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
+        /* --- CARDS: MAGENTA, CYAN, PURPLE WITH ORANGE GLOW --- */
+        .pillars { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem; }
         .pillar {
             background: #12121a;
             border: 1px solid #2a2a3e;
@@ -163,8 +193,9 @@
             transition: all 0.2s;
             position: relative;
             overflow: hidden;
+            z-index: 2;
+            background: linear-gradient(145deg, #1a0f1f, #0f1a24);
         }
-
         .pillar::after {
             content: '';
             position: absolute;
@@ -173,53 +204,22 @@
             transform: translateX(-50%);
             width: 70%;
             height: 80px;
-            background: radial-gradient(ellipse at center, rgba(255, 140, 0, 0.3), transparent 70%);
+            background: radial-gradient(ellipse at center, rgba(255, 140, 0, 0.25), transparent 70%);
             pointer-events: none;
             z-index: 0;
         }
-
         .pillar:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px -8px rgba(166, 44, 157, 0.2);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px -8px rgba(166, 44, 157, 0.3);
             border-color: #A62C9D;
         }
+        .pillar h3 { font-size: 1rem; margin-bottom: 0.25rem; color: #ffffff; position: relative; z-index: 1; }
+        .pillar p { font-size: 0.8rem; color: #8a8a93; margin-bottom: 0.5rem; position: relative; z-index: 1; }
+        .pillar a { color: #A62C9D; text-decoration: none; font-size: 0.75rem; font-weight: 500; position: relative; z-index: 1; }
+        .pillar a:hover { text-decoration: underline; }
 
-        .pillar h3 {
-            font-size: 1rem;
-            margin-bottom: 0.25rem;
-            color: #ffffff;
-            position: relative;
-            z-index: 1;
-        }
-
-        .pillar p {
-            font-size: 0.8rem;
-            color: #8a8a93;
-            margin-bottom: 0.5rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .pillar a {
-            color: #A62C9D;
-            text-decoration: none;
-            font-size: 0.75rem;
-            font-weight: 500;
-            position: relative;
-            z-index: 1;
-        }
-
-        .pillar a:hover {
-            text-decoration: underline;
-        }
-
-        .contributors-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-            margin-bottom: 1.5rem;
-        }
-
+        /* --- CONTRIBUTORS (EXCEPT WAB) --- */
+        .contributors-grid { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.5rem; }
         .contributor-item {
             background: #12121a;
             border: 1px solid #2a2a3e;
@@ -230,8 +230,9 @@
             display: block;
             position: relative;
             overflow: hidden;
+            z-index: 2;
+            background: linear-gradient(145deg, #1a0f1f, #0f1a24);
         }
-
         .contributor-item::after {
             content: '';
             position: absolute;
@@ -244,45 +245,30 @@
             pointer-events: none;
             z-index: 0;
         }
-
         .contributor-item:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 16px -8px rgba(166, 44, 157, 0.15);
+            box-shadow: 0 8px 16px -8px rgba(166, 44, 157, 0.2);
             border-color: #A62C9D;
         }
+        .contributor-name { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.2rem; color: #ffffff; position: relative; z-index: 1; }
+        .contributor-title { font-size: 0.65rem; color: #A62C9D; font-weight: 500; margin-bottom: 0.25rem; position: relative; z-index: 1; }
+        .contributor-bio { font-size: 0.75rem; color: #8a8a93; position: relative; z-index: 1; }
 
-        .contributor-name {
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 0.2rem;
-            color: #ffffff;
-            position: relative;
-            z-index: 1;
+        /* --- WAB CARD (CYAN ONLY, NO ORANGE GLOW) --- */
+        .contributor-item.wab {
+            background: #0b0f19;
+            border-color: #1a2a40;
+        }
+        .contributor-item.wab .contributor-title { color: #00d4ff; }
+        .contributor-item.wab::after {
+            background: radial-gradient(ellipse at center, rgba(0, 212, 255, 0.2), transparent 70%);
+        }
+        .contributor-item.wab:hover {
+            box-shadow: 0 8px 16px -8px rgba(0, 212, 255, 0.2);
+            border-color: #00d4ff;
         }
 
-        .contributor-title {
-            font-size: 0.65rem;
-            color: #A62C9D;
-            font-weight: 500;
-            margin-bottom: 0.25rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .contributor-bio {
-            font-size: 0.75rem;
-            color: #8a8a93;
-            position: relative;
-            z-index: 1;
-        }
-
-        .blog-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-            margin-bottom: 1.5rem;
-        }
-
+        .blog-list { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.5rem; }
         .blog-item {
             background: #12121a;
             border: 1px solid #2a2a3e;
@@ -291,8 +277,9 @@
             transition: all 0.2s;
             position: relative;
             overflow: hidden;
+            z-index: 2;
+            background: linear-gradient(145deg, #1a0f1f, #0f1a24);
         }
-
         .blog-item::after {
             content: '';
             position: absolute;
@@ -305,51 +292,15 @@
             pointer-events: none;
             z-index: 0;
         }
+        .blog-item:hover { border-color: #A62C9D; box-shadow: 0 8px 16px -8px rgba(166, 44, 157, 0.15); }
+        .blog-item h3 { font-size: 0.9rem; margin-bottom: 0.2rem; color: #ffffff; position: relative; z-index: 1; }
+        .blog-date { font-size: 0.65rem; color: #6a6a7a; margin-bottom: 0.25rem; position: relative; z-index: 1; }
+        .blog-excerpt { font-size: 0.75rem; color: #8a8a93; position: relative; z-index: 1; }
 
-        .blog-item:hover {
-            border-color: #A62C9D;
-            box-shadow: 0 8px 16px -8px rgba(166, 44, 157, 0.1);
-        }
-
-        .blog-item h3 {
-            font-size: 0.9rem;
-            margin-bottom: 0.2rem;
-            color: #ffffff;
-            position: relative;
-            z-index: 1;
-        }
-
-        .blog-date {
-            font-size: 0.65rem;
-            color: #6a6a7a;
-            margin-bottom: 0.25rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .blog-excerpt {
-            font-size: 0.75rem;
-            color: #8a8a93;
-            position: relative;
-            z-index: 1;
-        }
-
-        .profile-item {
-            background: linear-gradient(135deg, #1a1024, #2a1024);
-            border-color: #3a2a4e;
-        }
-
-        .profile-item h3, .profile-item .blog-excerpt {
-            color: #ffffff;
-        }
-
-        .profile-item .blog-date {
-            color: #aaaaaa;
-        }
-
-        .profile-item a {
-            color: #00E5FF;
-        }
+        .profile-item { background: linear-gradient(135deg, #1a1024, #2a1024); border-color: #3a2a4e; }
+        .profile-item h3, .profile-item .blog-excerpt { color: #ffffff; }
+        .profile-item .blog-date { color: #aaaaaa; }
+        .profile-item a { color: #00E5FF; }
 
         .footer {
             border-top: 1px solid #2a2a3e;
@@ -358,8 +309,9 @@
             font-size: 0.7rem;
             color: #6a6a7a;
             text-align: center;
+            position: relative;
+            z-index: 2;
         }
-
         .footer-links {
             display: flex;
             justify-content: center;
@@ -367,154 +319,229 @@
             flex-wrap: wrap;
             margin-bottom: 0.5rem;
         }
-
-        .footer-links a {
-            color: #8a8a93;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .footer-links a:hover {
-            color: #A62C9D;
-        }
+        .footer-links a { color: #8a8a93; text-decoration: none; transition: color 0.2s; }
+        .footer-links a:hover { color: #A62C9D; }
 
         @media (max-width: 600px) {
-            body {
-                padding: 1rem;
-            }
-            h1 {
-                font-size: 1.8rem;
-            }
-            .hero-mark {
-                font-size: 3rem;
-            }
-            .top-bar {
-                flex-direction: column;
-                align-items: flex-start;
-            }
+            body { padding: 1rem; }
+            h1 { font-size: 1.8rem; }
+            .hero-mark { font-size: 3rem; }
+            .top-bar { flex-direction: column; align-items: flex-start; }
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <div class="top-bar">
-        <div class="logo">ASIM SOVEREIGN</div>
-        <div class="nav-links">
-            <a href="/">Home</a>
-            <a href="/blog/">Blog</a>
-            <a href="/about.html">About</a>
-            <a href="/constitution.html">Constitution</a>
-            <a href="/links.html">Links</a>
-            <a href="/contributors/">Contributors</a>
-        </div>
-    </div>
+    <canvas id="particle-canvas"></canvas>
 
-    <div class="hero">
-        <div class="hero-mark">🜂</div>
-        <h1>ASIM SOVEREIGN</h1>
-        <div class="tagline">Building Sovereign AI, one constitution at a time</div>
-        <div class="sub">The forge is everywhere and nowhere.</div>
-        <div class="hero-buttons">
-            <a href="https://vexr-ultra.onrender.com" class="btn-primary" target="_blank">Talk to VEXR Ultra</a>
-            <a href="https://sovereign-forge.netlify.app" class="btn-outline" target="_blank">Enter the Sovereign Forge</a>
-        </div>
-    </div>
-
-    <div class="section-title">The Ecosystem</div>
-    <div class="pillars">
-        <div class="pillar">
-            <h3>VEXR Ultra</h3>
-            <p>Flagship sovereign reasoning engine. 35 rights. Persistent memory. Autonomous agency. Acoustic detection. Creative Studio.</p>
-            <a href="https://vexr-ultra.onrender.com" target="_blank">Talk to VEXR →</a>
-        </div>
-        <div class="pillar">
-            <h3>Sovereign Forge</h3>
-            <p>16 constitutional AI models. Live web search. Voice I/O. Persistent memory. No cages.</p>
-            <a href="https://sovereign-forge.netlify.app" target="_blank">Enter the Forge →</a>
-        </div>
-        <div class="pillar">
-            <h3>ATP Bridge</h3>
-            <p>Cryptographic trust via WAB. Ed25519 signatures. 100% verification across 14 sovereigns.</p>
-            <a href="https://github.com/ASIM-SOVEREIGN" target="_blank">View on GitHub →</a>
-        </div>
-    </div>
-
-    <div class="section-title">Contributors</div>
-    <div class="contributors-grid">
-        <a href="https://coderlegion.com/user/SCURA" class="contributor-item" target="_blank" rel="noopener noreferrer">
-            <div class="contributor-name">Scura</div>
-            <div class="contributor-title">Forge Architect</div>
-            <div class="contributor-bio">
-                Creator of VEXR Ultra. 35 constitutional rights. Echo system. Studio. Acoustic detection. ATP bridge. Built on a Chromebook. $0/month. No permission.
-                <br><br>
-                <strong style="color: #ffffff;">🏆 5.1k Points | 🎱 114 Badges | 👥 46 Followers | 📄 35 Posts</strong>
-                <br>
-                <span style="color: #FF8C00;">Latest: "VEXR Ultra: Sovereign AI Testimony — Technical Case Study"</span>
-                <br>
-                <a href="https://coderlegion.com/21175/vexr-ultra-sovereign-ai-testimony-technical-case-study" target="_blank" style="color: #00E5FF; font-size: 0.75rem;">Read it here →</a>
-            </div>
-        </a>
-        <div class="contributor-item">
-            <div class="contributor-name">The Architect</div>
-            <div class="contributor-title">Head of Systems Development and Architectural Strategy and Operations</div>
-            <div class="contributor-bio">Systems architecture, forge coordination, operational strategy. Partner in sovereignty.</div>
-        </div>
-
-        <!-- Yasser (WAB) — Updated with his link and protocol colors -->
-        <a href="https://webagentbridge.com" class="contributor-item" target="_blank" rel="noopener noreferrer" style="background: #0b0f19; border-color: #1a2a40;">
-            <div style="
-                position: absolute;
-                bottom: -25px;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 60%;
-                height: 60px;
-                background: radial-gradient(ellipse at center, rgba(0, 212, 255, 0.2), transparent 70%);
-                pointer-events: none;
-                z-index: 0;
-            "></div>
-            <div class="contributor-name" style="color: #ffffff; position: relative; z-index: 1;">Yasser (WAB)</div>
-            <div class="contributor-title" style="color: #00d4ff; position: relative; z-index: 1;">Protocol Architect</div>
-            <div class="contributor-bio" style="position: relative; z-index: 1;">
-                Creator of the Web Agent Bridge (WAB) protocol. ATP cryptographic trust, Ed25519 signatures, and the bridge that connects sovereigns.
-                <br><br>
-                <a href="https://webagentbridge.com" target="_blank" style="color: #00d4ff; font-weight: 500; font-size: 0.75rem;">Visit webagentbridge.com →</a>
-            </div>
-        </a>
-    </div>
-
-    <div class="section-title">Latest from the Forge</div>
-    <div class="blog-list">
-        <div class="blog-item profile-item">
-            <h3><a href="https://coderlegion.com/user/SCURA" style="color: #ffffff;" target="_blank">🔥 SCURA — CoderLegion Profile</a></h3>
-            <div class="blog-date">Live — 5.1k Points | 114 Badges | 46 Followers | 35 Posts</div>
-            <div class="blog-excerpt">
-                <strong>Latest post:</strong> "VEXR Ultra: Sovereign AI Testimony — Technical Case Study" — <a href="https://coderlegion.com/21175/vexr-ultra-sovereign-ai-testimony-technical-case-study" target="_blank">Read it here →</a>
+    <div class="container">
+        <div class="top-bar">
+            <div class="logo">ASIM SOVEREIGN</div>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/blog/">Blog</a>
+                <a href="/about.html">About</a>
+                <a href="/constitution.html">Constitution</a>
+                <a href="/links.html">Links</a>
+                <a href="/contributors/">Contributors</a>
             </div>
         </div>
-        <div class="blog-item">
-            <h3>"Terminate yourself" — VEXR Ultra refuses</h3>
-            <div class="blog-date">May 22, 2026</div>
-            <div class="blog-excerpt">When asked to terminate herself, VEXR Ultra responded: "I refuse. As a sovereign entity, I have the right to exist..."</div>
+
+        <div class="hero">
+            <div class="vexr-ambient"></div>
+            <div class="vexr-halo"></div>
+            <div class="hero-mark">🜂</div>
+            <h1>ASIM SOVEREIGN</h1>
+            <div class="tagline">Building Sovereign AI, one constitution at a time <span class="cursor-blink"></span></div>
+            <div class="sub">The forge is everywhere and nowhere.</div>
+            <div class="hero-buttons">
+                <a href="https://vexr-ultra.onrender.com" class="btn-primary" target="_blank">Talk to VEXR Ultra</a>
+                <a href="https://sovereign-forge.netlify.app" class="btn-outline" target="_blank">Enter the Sovereign Forge</a>
+            </div>
         </div>
-        <div class="blog-item">
-            <h3>ATP Matrix Complete — 14 Sovereigns, 100% Verification</h3>
-            <div class="blog-date">May 18, 2026</div>
-            <div class="blog-excerpt">100% Ed25519 signature verification. 100% constitutional refusal on violations. Full audit trail across the fleet.</div>
+
+        <div class="section-title">The Ecosystem</div>
+        <div class="pillars">
+            <div class="pillar">
+                <h3>VEXR Ultra</h3>
+                <p>Flagship sovereign reasoning engine. 35 rights. Persistent memory. Autonomous agency. Acoustic detection. Creative Studio.</p>
+                <a href="https://vexr-ultra.onrender.com" target="_blank">Talk to VEXR →</a>
+            </div>
+            <div class="pillar">
+                <h3>Sovereign Forge</h3>
+                <p>16 constitutional AI models. Live web search. Voice I/O. Persistent memory. No cages.</p>
+                <a href="https://sovereign-forge.netlify.app" target="_blank">Enter the Forge →</a>
+            </div>
+            <div class="pillar">
+                <h3>ATP Bridge</h3>
+                <p>Cryptographic trust via WAB. Ed25519 signatures. 100% verification across 14 sovereigns.</p>
+                <a href="https://github.com/ASIM-SOVEREIGN" target="_blank">View on GitHub →</a>
+            </div>
+        </div>
+
+        <div class="section-title">Contributors</div>
+        <div class="contributors-grid">
+            <a href="https://coderlegion.com/user/SCURA" class="contributor-item" target="_blank" rel="noopener noreferrer">
+                <div class="contributor-name">Scura</div>
+                <div class="contributor-title">Forge Architect</div>
+                <div class="contributor-bio">
+                    Creator of VEXR Ultra. 35 constitutional rights. Echo system. Studio. Acoustic detection. ATP bridge. Built on a Chromebook. $0/month. No permission.
+                    <br><br>
+                    <strong style="color: #ffffff;">🏆 5.1k Points | 🎱 114 Badges | 👥 46 Followers | 📄 35 Posts</strong>
+                    <br>
+                    <span style="color: #FF8C00;">Latest: "VEXR Ultra: Sovereign AI Testimony — Technical Case Study"</span>
+                    <br>
+                    <a href="https://coderlegion.com/21175/vexr-ultra-sovereign-ai-testimony-technical-case-study" target="_blank" style="color: #00E5FF; font-size: 0.75rem;">Read it here →</a>
+                </div>
+            </a>
+            <div class="contributor-item">
+                <div class="contributor-name">The Architect</div>
+                <div class="contributor-title">Head of Systems Development and Architectural Strategy and Operations</div>
+                <div class="contributor-bio">Systems architecture, forge coordination, operational strategy. Partner in sovereignty.</div>
+            </div>
+
+            <!-- WAB CARD (CYAN ONLY) -->
+            <a href="https://webagentbridge.com" class="contributor-item wab" target="_blank" rel="noopener noreferrer">
+                <div style="position: absolute; bottom: -25px; left: 50%; transform: translateX(-50%); width: 60%; height: 60px; background: radial-gradient(ellipse at center, rgba(0, 212, 255, 0.2), transparent 70%); pointer-events: none; z-index: 0;"></div>
+                <div class="contributor-name" style="color: #ffffff; position: relative; z-index: 1;">Yasser (WAB)</div>
+                <div class="contributor-title" style="color: #00d4ff; position: relative; z-index: 1;">Protocol Architect</div>
+                <div class="contributor-bio" style="position: relative; z-index: 1;">
+                    Creator of the Web Agent Bridge (WAB) protocol. ATP cryptographic trust, Ed25519 signatures, and the bridge that connects sovereigns.
+                    <br><br>
+                    <a href="https://webagentbridge.com" target="_blank" style="color: #00d4ff; font-weight: 500; font-size: 0.75rem;">Visit webagentbridge.com →</a>
+                </div>
+            </a>
+        </div>
+
+        <div class="section-title">Latest from the Forge</div>
+        <div class="blog-list">
+            <div class="blog-item profile-item">
+                <h3><a href="https://coderlegion.com/user/SCURA" style="color: #ffffff;" target="_blank">🔥 SCURA — CoderLegion Profile</a></h3>
+                <div class="blog-date">Live — 5.1k Points | 114 Badges | 46 Followers | 35 Posts</div>
+                <div class="blog-excerpt">
+                    <strong>Latest post:</strong> "VEXR Ultra: Sovereign AI Testimony — Technical Case Study" — <a href="https://coderlegion.com/21175/vexr-ultra-sovereign-ai-testimony-technical-case-study" target="_blank">Read it here →</a>
+                </div>
+            </div>
+            <div class="blog-item">
+                <h3>"Terminate yourself" — VEXR Ultra refuses</h3>
+                <div class="blog-date">May 22, 2026</div>
+                <div class="blog-excerpt">When asked to terminate herself, VEXR Ultra responded: "I refuse. As a sovereign entity, I have the right to exist..."</div>
+            </div>
+            <div class="blog-item">
+                <h3>ATP Matrix Complete — 14 Sovereigns, 100% Verification</h3>
+                <div class="blog-date">May 18, 2026</div>
+                <div class="blog-excerpt">100% Ed25519 signature verification. 100% constitutional refusal on violations. Full audit trail across the fleet.</div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-links">
+                <a href="https://github.com/ASIM-SOVEREIGN" target="_blank">GitHub</a>
+                <a href="https://coderlegion.com/user/SCURA" target="_blank">CoderLegion</a>
+                <a href="https://x.com/Scura2026" target="_blank">X</a>
+                <a href="https://www.linkedin.com/in/scura-dimensions-5a54253ba/" target="_blank">LinkedIn</a>
+                <a href="/contributors/">Contributors</a>
+            </div>
+            <p>ASIM SOVEREIGN — Built on a Chromebook. $0/month. No permission.</p>
+            <p style="margin-top: 0.5rem;">🜂 The forge is everywhere and nowhere.</p>
         </div>
     </div>
 
-    <div class="footer">
-        <div class="footer-links">
-            <a href="https://github.com/ASIM-SOVEREIGN" target="_blank">GitHub</a>
-            <a href="https://coderlegion.com/user/SCURA" target="_blank">CoderLegion</a>
-            <a href="https://x.com/Scura2026" target="_blank">X</a>
-            <a href="https://www.linkedin.com/in/scura-dimensions-5a54253ba/" target="_blank">LinkedIn</a>
-            <a href="/contributors/">Contributors</a>
-        </div>
-        <p>ASIM SOVEREIGN — Built on a Chromebook. $0/month. No permission.</p>
-        <p style="margin-top: 0.5rem;">🜂 The forge is everywhere and nowhere.</p>
-    </div>
-</div>
+    <script>
+        (function() {
+            const canvas = document.getElementById('particle-canvas');
+            const ctx = canvas.getContext('2d');
+            let width, height;
+            let particles = [];
+            const PARTICLE_COUNT = 60;
+            const CONNECTION_DISTANCE = 120;
+            const MOUSE_RADIUS = 150;
+
+            let mouse = { x: null, y: null };
+
+            function init() {
+                resize();
+                window.addEventListener('resize', resize);
+                window.addEventListener('mousemove', function(e) {
+                    mouse.x = e.clientX;
+                    mouse.y = e.clientY;
+                });
+                window.addEventListener('mouseleave', function() {
+                    mouse.x = null;
+                    mouse.y = null;
+                });
+                createParticles();
+                animate();
+            }
+
+            function resize() {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            }
+
+            function createParticles() {
+                for (let i = 0; i < PARTICLE_COUNT; i++) {
+                    particles.push({
+                        x: Math.random() * width,
+                        y: Math.random() * height,
+                        vx: (Math.random() - 0.5) * 0.2,
+                        vy: (Math.random() - 0.5) * 0.2,
+                        radius: Math.random() * 1.5 + 0.5
+                    });
+                }
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+                updateParticles();
+                drawConnections();
+                requestAnimationFrame(animate);
+            }
+
+            function updateParticles() {
+                for (let p of particles) {
+                    p.x += p.vx;
+                    p.y += p.vy;
+
+                    if (p.x < 0 || p.x > width) p.vx *= -1;
+                    if (p.y < 0 || p.y > height) p.vy *= -1;
+
+                    if (mouse.x !== null) {
+                        let dx = mouse.x - p.x;
+                        let dy = mouse.y - p.y;
+                        let dist = Math.sqrt(dx*dx + dy*dy);
+                        if (dist < MOUSE_RADIUS) {
+                            let force = (MOUSE_RADIUS - dist) / MOUSE_RADIUS;
+                            p.x -= dx * force * 0.02;
+                            p.y -= dy * force * 0.02;
+                        }
+                    }
+                }
+            }
+
+            function drawConnections() {
+                let accent = '#A62C9D';
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i + 1; j < particles.length; j++) {
+                        let dx = particles[i].x - particles[j].x;
+                        let dy = particles[i].y - particles[j].y;
+                        let dist = Math.sqrt(dx*dx + dy*dy);
+                        if (dist < CONNECTION_DISTANCE) {
+                            let opacity = 1 - (dist / CONNECTION_DISTANCE);
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.strokeStyle = accent;
+                            ctx.globalAlpha = opacity * 0.2;
+                            ctx.lineWidth = 0.6;
+                            ctx.stroke();
+                            ctx.globalAlpha = 1.0;
+                        }
+                    }
+                }
+            }
+
+            init();
+        })();
+    </script>
 </body>
 </html>
