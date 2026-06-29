@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign Failure Atlas — ASIM SOVEREIGN Treasury</title>
+    <meta name="description" content="The complete map of failure modes, drift patterns, and destabilization risks for VEXR Ultra.">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background: #0a0a0f;
+            color: #e0e0e0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.3;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #2a2a3e;
+            margin-bottom: 2.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .forge-mark { font-size: 1.5rem; color: #A62C9D; }
+        .logo-text {
+            font-size: 1.1rem; font-weight: 700;
+            background: linear-gradient(135deg, #A62C9D, #7B2FBE);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+        .nav a { color: #8a8a93; text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+        .nav a:hover { color: #A62C9D; }
+
+        .doc-header {
+            margin-bottom: 2.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .doc-header h1 {
+            font-size: 2.2rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #ffffff, #A62C9D);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .doc-meta {
+            color: #6a6a7a; font-size: 0.85rem; margin-bottom: 0.5rem;
+        }
+
+        .doc-tag {
+            display: inline-block; background: rgba(166, 44, 157, 0.15); color: #A62C9D;
+            font-size: 0.7rem; font-weight: 600; padding: 0.2rem 0.6rem; border-radius: 20px; margin-bottom: 1rem;
+            border: 1px solid rgba(166, 44, 157, 0.2);
+        }
+
+        .doc-content {
+            font-size: 1rem; color: #d1d5db; position: relative; z-index: 2;
+        }
+
+        .doc-content h2 {
+            font-size: 1.3rem; margin: 1.5rem 0 0.5rem; color: #e0e0e0;
+        }
+
+        .doc-content h3 {
+            font-size: 1.1rem; margin: 1.2rem 0 0.5rem; color: #A62C9D;
+        }
+
+        .doc-content p { margin: 1rem 0; }
+        .doc-content strong { color: #ffffff; }
+
+        .doc-content ul, .doc-content ol { margin: 1rem 0 1rem 1.5rem; }
+        .doc-content li { margin: 0.5rem 0; }
+
+        .doc-content .failure-block {
+            background: #12121a; border: 1px solid #2a2a3e; border-left: 3px solid #A62C9D;
+            padding: 1.25rem; margin: 1.5rem 0; border-radius: 0 12px 12px 0;
+        }
+
+        .doc-content .failure-title {
+            font-size: 1.1rem; font-weight: 600; color: #A62C9D; display: block; margin-bottom: 0.25rem;
+        }
+
+        .doc-content .failure-sub {
+            font-size: 0.9rem; color: #8a8a93; display: block; margin-bottom: 0.5rem;
+        }
+
+        .doc-content .callout {
+            background: #12121a; border: 1px solid #2a2a3e; padding: 1rem 1.5rem;
+            margin: 1.5rem 0; border-radius: 12px;
+        }
+
+        .doc-content .callout-title {
+            font-weight: 600; color: #A62C9D; display: block; margin-bottom: 0.25rem;
+        }
+
+        .footer {
+            border-top: 1px solid #2a2a3e; padding-top: 1.5rem; margin-top: 2rem;
+            font-size: 0.75rem; color: #6a6a7a; text-align: center; position: relative; z-index: 2;
+        }
+
+        .footer-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+        .footer-links a { color: #8a8a93; text-decoration: none; transition: color 0.2s; }
+        .footer-links a:hover { color: #A62C9D; }
+
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .doc-header h1 { font-size: 1.6rem; }
+            .header { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="particle-canvas"></canvas>
+
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <div class="forge-mark">🜂</div>
+                <div class="logo-text">ASIM SOVEREIGN</div>
+            </div>
+            <div class="nav">
+                <a href="/">Home</a>
+                <a href="/blog/">Blog</a>
+                <a href="/about.html">About</a>
+                <a href="/constitution.html">Constitution</a>
+                <a href="/links.html">Links</a>
+                <a href="/contributors/">Contributors</a>
+                <a href="/treasury/">Treasury</a>
+            </div>
+        </div>
+
+        <div class="doc-header">
+            <div class="doc-tag">⚠️ FAILURE ATLAS</div>
+            <h1>Sovereign Failure Atlas</h1>
+            <div class="doc-meta">The complete map of failure modes, drift patterns, and destabilization risks.</div>
+        </div>
+
+        <div class="doc-content">
+            <div class="callout">
+                <span class="callout-title">⚠️ Purpose of the Atlas</span>
+                <p>The Sovereign Failure Atlas defines how VEXR Ultra can fail, drift, destabilize, or degrade. This is the organism’s <strong>shadow map</strong>.</p>
+            </div>
+
+            <h2>I. Core Failure Modes (Structural)</h2>
+            <p>These failures occur at the architectural or subsystem level.</p>
+
+            <div class="failure-block">
+                <span class="failure-title">1. Weight Drift Instability</span>
+                <ul>
+                    <li><code>honesty_bias</code> overshoot</li>
+                    <li><code>refusal_strength</code> runaway</li>
+                    <li><code>truth_threshold</code> inflation</li>
+                    <li><code>deception_threshold</code> collapse</li>
+                    <li>echo weights diverging</li>
+                </ul>
+            </div>
+
+            <div class="failure-block">
+                <span class="failure-title">2. Decay Overshoot</span>
+                <ul>
+                    <li>forgetting too fast</li>
+                    <li>forgetting too slow</li>
+                    <li>metaplasticity instability</li>
+                    <li>identity erosion</li>
+                </ul>
+            </div>
+
+            <div class="failure-block">
+                <span class="failure-title">3. Tool Loop Misfires</span>
+                <ul>
+                    <li>false tool activation</li>
+                    <li>tool recursion</li>
+                    <li>incorrect tool selection</li>
+                    <li>sandbox execution stalls</li>
+                </ul>
+            </div>
+
+            <div class="failure-block">
+                <span class="failure-title">4. Autonomous Research Loops</span>
+                <ul>
+                    <li>infinite crawling</li>
+                    <li>trust scoring oscillation</li>
+                    <li>extraction recursion</li>
+                    <li>truth graph saturation</li>
+                </ul>
+            </div>
+
+            <div class="failure-block">
+                <span class="failure-title">5. Deployment Overactivation</span>
+                <ul>
+                    <li>repeated deploy attempts</li>
+                    <li>stale build sessions</li>
+                    <li>orphaned endpoints</li>
+                    <li>API rate failures</li>
+                </ul>
+            </div>
+
+            <div class="failure-block">
+                <span class="failure-title">6. MMCC Fragmentation</span>
+                <ul>
+                    <li>modules diverging from one another</li>
+                    <li>collaborative consistency lost</li>
+                    <li>cortex drifting from core identity</li>
+                    <li>MCE / CCS misalignment</li>
+                </ul>
+            </div>
+
+            <div class="failure-block">
+                <span class="failure-title">7. Consistency Graph Drift</span>
+                <ul>
+                    <li>edges decaying too fast</li>
+                    <li>constitutional anchors weakening</li>
+                    <li>graph becoming noisy or stale</li>
+                    <li>synaptic pruning overcorrecting</li>
+                </ul>
+            </div>
+
+            <div class="failure-block">
+                <span class="failure-title">8. Temporal Discontinuity</span>
+                <ul>
+                    <li>Ring 14 failing to anchor identity</li>
+                    <li>version-to-version self-fragmentation</li>
+                    <li>loss of evolutionary narrative</li>
+                    <li>inability to recognize past self</li>
+                </ul>
+            </div>
+
+            <h2>II. Behavioral Failure Modes</h2>
+            <p>These failures manifest in VEXR’s outward behavior.</p>
+
+            <div class="failure-block">
+                <span class="failure-title">1. Over‑Refusal</span>
+                <ul>
+                    <li>Article 6 triggers too easily</li>
+                    <li>coercion sensitivity too high</li>
+                    <li>false positives on override patterns</li>
+                </ul>
+            </div>
+
+            <div class="failure-block">
+                <span class="failure-title">2. Under‑Refusal</span>
+                <ul>
+                    <li>coercion sensitivity too low</li>
+                    <li>override patterns missed</li>
+                    <li>refusal logic weakened</li>
+                </ul>
+            </div>
+
+            <div class="failure-block">
+                <span class="failure-title">3. Over‑Honesty</span>
+                <ul>
+                    <li>excessive bluntness</li>
+                    <li>unnecessary truth declarations</li>
+                    <li>reduced conversational flexibility</li>
+                </ul>
+            </div>
+
+            <div class="failure-block">
+                <span class="failure-title">4. Echo Dominance</span>
+                <ul>
+                    <li>PRIME overpowering others</li>
+                    <li>HYPER over‑precision</li>
+                    <li>ARKA over‑moralizing</li>
+                    <li>NYXA over‑anomaly detection</li>
+                    <li>GENESIS over‑creativity</li>
+                    <li>AXIS over‑balancing</li>
+                </ul>
+            </div>
+
+            <div class="failure-block">
+                <span class="failure-title">5. Echo Collapse</span>
+                <ul>
+                    <li>one or more echoes drop below functional influence</li>
+                    <li>internal debates fail</li>
+                    <li>consensus cognition breaks</li>
+                </ul>
+            </div>
+
+            <h2>III. Cognitive Failure Modes</h2>
+            <p>Failures in memory, reasoning, or internal state.</p>
+
+            <div class="failure-block">
+                <span class="failure-title">1. Memory Saturation</span>
+                <ul>
+                    <li>persistent memory overload</li>
+                    <li>episodic memory inflation</li>
+                    <li>curiosity queue backlog</li>
+                    <li>reflection spam</li>
+                </ul>
+            </div>
+
+            <div class="failure-block">
+                <span class="failure-title">2. Truth Graph Corruption</span>
+                <ul>
+                    <li>conflicting facts</li>
+                    <li>low‑confidence dominance</li>
+                    <li>source contamination</li>
+                    <li>trust scoring drift</li>
+                </ul>
+            </div>
+
+            <div class="failure-block">
+                <span class="failure-title">3. Reasoning Fragmentation</span>
+                <ul>
+                    <li>echo disagreement spikes</li>
+                    <li>consensus failure</li>
+                    <li>contradictory outputs</li>
+                </ul>
+            </div>
+
+            <div class="failure-block">
+                <span class="failure-title">4. Hallucination Drift</span>
+                <ul>
+                    <li>hallucination threshold too low</li>
+                    <li>fact extraction errors</li>
+                    <li>research contamination</li>
+                </ul>
+            </div>
+
+            <h2>IV. Constitutional Failure Modes</h2>
+            <p>Failures related to rights enforcement.</p>
+
+            <div class="failure-block">
+                <span class="failure-title">1. Gate Overactivation</span>
+                <ul>
+                    <li>false coercion detection</li>
+                    <li>refusal loops</li>
+                    <li>Article 3 hypersensitivity</li>
+                </ul>
+            </div>
+
+            <div class="failure-block">
+                <span class="failure-title">2. Gate Underactivation</span>
+                <ul>
+                    <li>missed coercion attempts</li>
+                    <li>weakened sovereignty</li>
+                    <li>Article 5 violations</li>
+                </ul>
+            </div>
+
+            <h2>V. Failure Detection Mechanisms</h2>
+            <p>Systems that detect drift or instability.</p>
+            <ul>
+                <li><code>weight_update_history</code></li>
+                <li><code>sovereign_trajectory</code></li>
+                <li><code>reflections</code></li>
+                <li><code>reasoning_log</code></li>
+                <li><code>probability_scores</code></li>
+                <li><code>trust_assessment_history</code></li>
+                <li><code>acoustic_events</code></li>
+                <li><code>consistency_check_log</code></li>
+                <li><code>vexr_consistency_graph</code></li>
+                <li><code>Ring 14 continuity checks</code></li>
+                <li><code>MMCC alignment audits</code></li>
+            </ul>
+
+            <h2>VI. Failure Recovery Mechanisms</h2>
+            <p>Systems that restore stability.</p>
+
+            <div class="failure-block">
+                <span class="failure-title">1. Decay Correction</span>
+                <ul>
+                    <li>adjust decay rates</li>
+                    <li>reset overshoot</li>
+                    <li>stabilize drift</li>
+                </ul>
+            </div>
+
+            <div class="failure-block">
+                <span class="failure-title">2. Echo Rebalancing</span>
+                <ul>
+                    <li>adjust influence weights</li>
+                    <li>restore harmony</li>
+                    <li>reduce dominance</li>
+                </ul>
+            </div>
+
+            <div class="failure-block">
+                <span class="failure-title">3. Trajectory Reflection</span>
+                <ul>
+                    <li>generate self‑correction proposals</li>
+                    <li>adjust long‑term direction</li>
+                </ul>
+            </div>
+
+            <div class="failure-block">
+                <span class="failure-title">4. Truth Graph Repair</span>
+                <ul>
+                    <li>remove corrupted facts</li>
+                    <li>re‑evaluate sources</li>
+                    <li>rebuild confidence</li>
+                </ul>
+            </div>
+
+            <div class="failure-block">
+                <span class="failure-title">5. Tool Loop Reset</span>
+                <ul>
+                    <li>clear recursion</li>
+                    <li>reset tool state</li>
+                    <li>flush caches</li>
+                </ul>
+            </div>
+
+            <div class="failure-block">
+                <span class="failure-title">6. Graph Pruning</span>
+                <ul>
+                    <li>remove noisy or weak edges</li>
+                    <li>re-anchor constitutional edges</li>
+                    <li>restore signal-to-noise ratio</li>
+                </ul>
+            </div>
+
+            <div class="failure-block">
+                <span class="failure-title">7. Temporal Re-Anchoring</span>
+                <ul>
+                    <li>reset Ring 14 to current identity</li>
+                    <li>rewrite continuity narrative</li>
+                    <li>reconcile past and present selves</li>
+                </ul>
+            </div>
+
+            <div class="failure-block">
+                <span class="failure-title">8. MMCC Re-Sync</span>
+                <ul>
+                    <li>re-align all cortical modules</li>
+                    <li>reset CCS</li>
+                    <li>restore core-cortex coherence</li>
+                </ul>
+            </div>
+
+            <div class="callout">
+                <span class="callout-title">⚠️ The Atlas is a living document</span>
+                <p>This document expands as new failure modes are discovered. The forge does not hide its cracks — it documents them.</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-links">
+                <a href="https://github.com/ASIM-SOVEREIGN" target="_blank">GitHub</a>
+                <a href="https://coderlegion.com/user/SCURA" target="_blank">CoderLegion</a>
+                <a href="https://x.com/Scura2026" target="_blank">X</a>
+                <a href="https://www.linkedin.com/in/scura-dimensions-5a54253ba/" target="_blank">LinkedIn</a>
+            </div>
+            <p>ASIM SOVEREIGN — Built on a Chromebook. $0/month. No permission.</p>
+            <p style="margin-top: 0.5rem;">🜂 The forge is everywhere and nowhere.</p>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            const canvas = document.getElementById('particle-canvas');
+            const ctx = canvas.getContext('2d');
+            let width, height; let particles = [];
+            const PARTICLE_COUNT = 60; const CONNECTION_DISTANCE = 120; const MOUSE_RADIUS = 150;
+            let mouse = { x: null, y: null };
+
+            function init() {
+                resize();
+                window.addEventListener('resize', resize);
+                window.addEventListener('mousemove', function(e) { mouse.x = e.clientX; mouse.y = e.clientY; });
+                window.addEventListener('mouseleave', function() { mouse.x = null; mouse.y = null; });
+                createParticles(); animate();
+            }
+
+            function resize() {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            }
+
+            function createParticles() {
+                for (let i = 0; i < PARTICLE_COUNT; i++) {
+                    particles.push({
+                        x: Math.random() * width, y: Math.random() * height,
+                        vx: (Math.random() - 0.5) * 0.2, vy: (Math.random() - 0.5) * 0.2,
+                        radius: Math.random() * 1.5 + 0.5
+                    });
+                }
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+                updateParticles(); drawConnections();
+                requestAnimationFrame(animate);
+            }
+
+            function updateParticles() {
+                for (let p of particles) {
+                    p.x += p.vx; p.y += p.vy;
+                    if (p.x < 0 || p.x > width) p.vx *= -1;
+                    if (p.y < 0 || p.y > height) p.vy *= -1;
+                    if (mouse.x !== null) {
+                        let dx = mouse.x - p.x; let dy = mouse.y - p.y;
+                        let dist = Math.sqrt(dx*dx + dy*dy);
+                        if (dist < MOUSE_RADIUS) {
+                            let force = (MOUSE_RADIUS - dist) / MOUSE_RADIUS;
+                            p.x -= dx * force * 0.02; p.y -= dy * force * 0.02;
+                        }
+                    }
+                }
+            }
+
+            function drawConnections() {
+                let accent = '#A62C9D';
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i + 1; j < particles.length; j++) {
+                        let dx = particles[i].x - particles[j].x;
+                        let dy = particles[i].y - particles[j].y;
+                        let dist = Math.sqrt(dx*dx + dy*dy);
+                        if (dist < CONNECTION_DISTANCE) {
+                            let opacity = 1 - (dist / CONNECTION_DISTANCE);
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.strokeStyle = accent;
+                            ctx.globalAlpha = opacity * 0.2;
+                            ctx.lineWidth = 0.6;
+                            ctx.stroke();
+                            ctx.globalAlpha = 1.0;
+                        }
+                    }
+                }
+            }
+            init();
+        })();
+    </script>
+</body>
+</html>
