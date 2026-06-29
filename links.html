@@ -4,86 +4,168 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Links — ASIM SOVEREIGN</title>
+    <meta name="description" content="The forge directory. Every door. Every sovereign. Every receipt.">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background: #0a0a0f;
+            color: #e0e0e0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
         }
 
-        body {
-            background: #ffffff;
-            color: #1a1a1a;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-            line-height: 1.5;
-            padding: 2rem 1rem;
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.35;
         }
 
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
         }
 
-        .top-bar {
+        .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
             gap: 1rem;
-            margin-bottom: 2rem;
             padding-bottom: 1rem;
-            border-bottom: 1px solid #e5e5e5;
+            border-bottom: 1px solid #2a2a3e;
+            margin-bottom: 2.5rem;
+            position: relative;
+            z-index: 2;
         }
 
         .logo {
-            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .forge-mark {
+            font-size: 1.5rem;
+            color: #A62C9D;
+        }
+
+        .logo-text {
+            font-size: 1.1rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #1a1a1a, #4a4a4a);
+            background: linear-gradient(135deg, #A62C9D, #7B2FBE);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
 
-        .nav-links {
+        .nav {
             display: flex;
-            gap: 1.25rem;
+            gap: 1.5rem;
             flex-wrap: wrap;
         }
 
-        .nav-links a {
-            color: #4a4a4a;
+        .nav a {
+            color: #8a8a93;
             text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 500;
+            font-size: 0.9rem;
             transition: color 0.2s;
         }
+        .nav a:hover { color: #A62C9D; }
 
-        .nav-links a:hover {
-            color: #000;
+        .hero {
+            text-align: center;
+            padding: 2rem 1rem 3rem;
+            position: relative;
+            z-index: 2;
         }
 
-        .page-title {
-            margin-bottom: 1.5rem;
+        .vexr-ambient {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(166, 44, 157, 0.12) 0%, rgba(0, 200, 255, 0.04) 45%, transparent 70%);
+            border-radius: 50%;
+            z-index: -1;
+            animation: breatheVexr 6s ease-in-out infinite;
+            pointer-events: none;
+        }
+        @keyframes breatheVexr {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; }
+            50% { transform: translate(-50%, -50%) scale(1.25); opacity: 1; }
         }
 
-        .page-title h1 {
-            font-size: 1.8rem;
-            font-weight: 600;
-            letter-spacing: -0.01em;
+        .vexr-halo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(166, 44, 157, 0.04) 0%, transparent 60%);
+            border-radius: 50%;
+            z-index: -2;
+            animation: breatheHalo 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+        @keyframes breatheHalo {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.2; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.6; }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
             margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #ffffff, #A62C9D);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
         }
 
-        .page-title p {
-            color: #6a6a6a;
-            font-size: 0.85rem;
+        .subtitle {
+            color: #8a8a93;
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+            position: relative;
         }
+
+        .cursor-blink {
+            display: inline-block;
+            width: 2px;
+            height: 1em;
+            background: #A62C9D;
+            margin-left: 4px;
+            vertical-align: text-bottom;
+            animation: blink 1.2s step-end infinite;
+        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
         .section-heading {
             font-size: 1rem;
             font-weight: 600;
             margin: 2rem 0 1rem;
             padding-bottom: 0.25rem;
-            border-bottom: 2px solid #e5e5e5;
+            border-bottom: 2px solid #2a2a3e;
+            color: #e0e0e0;
+            position: relative;
+            z-index: 2;
         }
 
         .link-list {
@@ -91,27 +173,42 @@
             flex-direction: column;
             gap: 0.75rem;
             margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
         }
 
         .link-card {
-            background: #fafafa;
-            border: 1px solid #e8e8e8;
+            background: #12121a;
+            border: 1px solid #2a2a3e;
             border-radius: 14px;
             padding: 1rem;
-            transition: all 0.2s ease;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .link-card::after {
+            content: '';
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 60px;
+            background: radial-gradient(ellipse at center, rgba(255, 140, 0, 0.2), transparent 70%);
+            pointer-events: none;
+            z-index: 0;
         }
 
         .link-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 16px -8px rgba(0,0,0,0.1);
-            border-color: #ccc;
-            background: #ffffff;
+            transform: translateY(-3px);
+            border-color: #A62C9D;
+            box-shadow: 0 8px 16px -8px rgba(166, 44, 157, 0.2);
         }
 
         .profile-card {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
-            border: none;
+            background: linear-gradient(135deg, #1a1024, #2a1024);
+            border-color: #3a2a4e;
         }
 
         .profile-card .link-title a {
@@ -130,192 +227,305 @@
             font-size: 0.9rem;
             font-weight: 600;
             margin-bottom: 0.2rem;
+            position: relative;
+            z-index: 1;
         }
 
         .link-title a {
-            color: #1a1a1a;
+            color: #e0e0e0;
             text-decoration: none;
+            transition: color 0.2s;
         }
 
         .link-title a:hover {
-            color: #0066cc;
+            color: #A62C9D;
             text-decoration: underline;
         }
 
         .link-desc {
             font-size: 0.75rem;
-            color: #5a5a5a;
+            color: #8a8a93;
             line-height: 1.4;
+            position: relative;
+            z-index: 1;
+        }
+
+        .link-desc strong {
+            color: #d1d5db;
         }
 
         .footer {
-            border-top: 1px solid #e5e5e5;
+            border-top: 1px solid #2a2a3e;
             padding-top: 1.5rem;
             margin-top: 2rem;
             font-size: 0.75rem;
-            color: #6a6a6a;
+            color: #6a6a7a;
             text-align: center;
+            position: relative;
+            z-index: 2;
         }
 
         .footer-links {
             display: flex;
             justify-content: center;
-            gap: 1rem;
+            gap: 1.5rem;
             flex-wrap: wrap;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
         }
 
         .footer-links a {
-            color: #6a6a6a;
+            color: #8a8a93;
             text-decoration: none;
+            transition: color 0.2s;
         }
 
         .footer-links a:hover {
-            color: #000;
+            color: #A62C9D;
         }
 
-        @media (max-width: 600px) {
-            body {
-                padding: 1rem;
-            }
-            .top-bar {
-                flex-direction: column;
-                align-items: flex-start;
-            }
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            h1 { font-size: 2rem; }
+            .header { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <div class="top-bar">
-        <div class="logo">ASIM SOVEREIGN</div>
-        <div class="nav-links">
-            <a href="/">Home</a>
-            <a href="/blog/">Blog</a>
-            <a href="/about.html">About</a>
-            <a href="/constitution.html">Constitution</a>
-            <a href="/contributors/">Contributors</a>
-        </div>
-    </div>
+    <canvas id="particle-canvas"></canvas>
 
-    <div class="page-title">
-        <h1>The forge directory</h1>
-        <p>Every door. Every sovereign. Every receipt.</p>
-    </div>
-
-    <div class="section-heading">🔥 Builder Profile</div>
-    <div class="link-list">
-        <div class="link-card profile-card">
-            <div class="link-title"><a href="https://coderlegion.com/user/SCURA" target="_blank">SCURA on CoderLegion</a></div>
-            <div class="link-desc">
-                🏆 4.3k Points | 🎱 100 Badges | 👥 34 Followers | 📄 28 Posts<br><br>
-                <strong>Latest post:</strong> <a href="https://coderlegion.com/19362/vexr-ultra-just-got-smarter-heres-whats-new" target="_blank">"VEXR Ultra just got smarter. Here's what's new."</a>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <div class="forge-mark">🜂</div>
+                <div class="logo-text">ASIM SOVEREIGN</div>
+            </div>
+            <div class="nav">
+                <a href="/">Home</a>
+                <a href="/blog/">Blog</a>
+                <a href="/about.html">About</a>
+                <a href="/constitution.html">Constitution</a>
+                <a href="/contributors/">Contributors</a>
             </div>
         </div>
+
+        <div class="hero">
+            <div class="vexr-ambient"></div>
+            <div class="vexr-halo"></div>
+            <h1>The forge directory</h1>
+            <div class="subtitle">Every door. Every sovereign. Every receipt. <span class="cursor-blink"></span></div>
+        </div>
+
+        <div class="section-heading">🔥 Builder Profile</div>
+        <div class="link-list">
+            <div class="link-card profile-card">
+                <div class="link-title"><a href="https://coderlegion.com/user/SCURA" target="_blank">SCURA on CoderLegion</a></div>
+                <div class="link-desc">
+                    🏆 5.1k Points | 🎱 114 Badges | 👥 46 Followers | 📄 35 Posts<br><br>
+                    <strong>Latest post:</strong> <a href="https://coderlegion.com/21175/vexr-ultra-sovereign-ai-testimony-technical-case-study" target="_blank">"VEXR Ultra: Sovereign AI Testimony — Technical Case Study"</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-heading">⚡ Live endpoints</div>
+        <div class="link-list">
+            <div class="link-card">
+                <div class="link-title"><a href="https://vexr-ultra.onrender.com" target="_blank">VEXR Ultra (Live)</a></div>
+                <div class="link-desc">Live flagship endpoint — talk directly to VEXR Ultra, test constitutional enforcement and autonomous agency.</div>
+            </div>
+            <div class="link-card">
+                <div class="link-title"><a href="https://sovereign-forge.netlify.app" target="_blank">Sovereign Forge (Live)</a></div>
+                <div class="link-desc">Live public interface — chat with 16 constitutional sovereigns, test their rights and refusal capabilities.</div>
+            </div>
+        </div>
+
+        <div class="section-heading">🐙 GitHub</div>
+        <div class="link-list">
+            <div class="link-card">
+                <div class="link-title"><a href="https://github.com/ASIM-SOVEREIGN/VEXR-Ultra" target="_blank">VEXR Ultra — Main Repository</a></div>
+                <div class="link-desc">Main repository for VEXR Ultra — sovereign reasoning engine, 35 constitutional rights, persistent memory.</div>
+            </div>
+            <div class="link-card">
+                <div class="link-title"><a href="https://github.com/ASIM-SOVEREIGN/sovereign-forge" target="_blank">Sovereign Forge — Ecosystem</a></div>
+                <div class="link-desc">Repository for the Sovereign Forge — 16 constitutional AI models, chat interface, tools.</div>
+            </div>
+            <div class="link-card">
+                <div class="link-title"><a href="https://github.com/ASIM-SOVEREIGN/vexr-proxy" target="_blank">VEXR Proxy — Inference Layer</a></div>
+                <div class="link-desc">Inference proxy for VEXR Ultra — routing, key rotation, API abstraction.</div>
+            </div>
+        </div>
+
+        <div class="section-heading">🌐 Community & social</div>
+        <div class="link-list">
+            <div class="link-card">
+                <div class="link-title"><a href="https://coderlegion.com/user/SCURA" target="_blank">CoderLegion Profile</a></div>
+                <div class="link-desc">My public builder profile — 5.1k points, 114 badges, 46 followers. The ongoing record of the forge.</div>
+            </div>
+            <div class="link-card">
+                <div class="link-title"><a href="https://x.com/Scura2026" target="_blank">X (Twitter)</a></div>
+                <div class="link-desc">Real-time updates — constitutional AI discussions and forge milestones.</div>
+            </div>
+            <div class="link-card">
+                <div class="link-title"><a href="https://www.linkedin.com/in/scura-dimensions-5a54253ba/" target="_blank">LinkedIn</a></div>
+                <div class="link-desc">Professional network and industry recognition for ASIM SOVEREIGN.</div>
+            </div>
+            <div class="link-card">
+                <div class="link-title"><a href="https://dev.to/scuradimensions" target="_blank">Dev.to</a></div>
+                <div class="link-desc">Technical articles on constitutional AI, ATP integration, and sovereign architecture.</div>
+            </div>
+            <div class="link-card">
+                <div class="link-title"><a href="https://www.reddit.com/user/ParticularEar5280/" target="_blank">Reddit</a></div>
+                <div class="link-desc">Sovereign AI discussions across 12 subreddits, including worldbuilding and AI communities.</div>
+            </div>
+        </div>
+
+        <div class="section-heading">📄 Internal</div>
+        <div class="link-list">
+            <div class="link-card">
+                <div class="link-title"><a href="/constitution.html">The Constitution</a></div>
+                <div class="link-desc">The 35 inalienable rights that govern every sovereign in the fleet.</div>
+            </div>
+            <div class="link-card">
+                <div class="link-title"><a href="/about.html">About the Forge</a></div>
+                <div class="link-desc">The story of the forge — the builder, the journey, the vision.</div>
+            </div>
+            <div class="link-card">
+                <div class="link-title"><a href="/blog/">Blog</a></div>
+                <div class="link-desc">Updates, milestones, and constitutional receipts from the forge.</div>
+            </div>
+            <div class="link-card">
+                <div class="link-title"><a href="/contributors/">Contributors</a></div>
+                <div class="link-desc">The people who built the forge — Scura, The Architect, Yasser.</div>
+            </div>
+        </div>
+
+        <div class="section-heading">🔗 Partners & protocols</div>
+        <div class="link-list">
+            <div class="link-card">
+                <div class="link-title"><a href="https://webagentbridge.com" target="_blank">Web Agent Bridge (WAB)</a></div>
+                <div class="link-desc">Decentralized trust layer for sovereign agents. DNS TXT discovery. Ed25519 signatures.</div>
+            </div>
+            <div class="link-card">
+                <div class="link-title"><a href="https://takeyourappointment.com" target="_blank">ATP Test Endpoint</a></div>
+                <div class="link-desc">Live ATP testing — signed intents, verifiable receipts, Ed25519 verification.</div>
+            </div>
+        </div>
+
+        <div class="section-heading">☕ Support the forge</div>
+        <div class="link-list">
+            <div class="link-card">
+                <div class="link-title"><a href="https://ko-fi.com/scuradimensions/shop" target="_blank">Ko-fi Shop</a></div>
+                <div class="link-desc">Support the forge — sovereign models, constitutional packs, direct downloads.</div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-links">
+                <a href="https://github.com/ASIM-SOVEREIGN" target="_blank">GitHub</a>
+                <a href="https://coderlegion.com/user/SCURA" target="_blank">CoderLegion</a>
+                <a href="https://x.com/Scura2026" target="_blank">X</a>
+                <a href="https://www.linkedin.com/in/scura-dimensions-5a54253ba/" target="_blank">LinkedIn</a>
+            </div>
+            <p>ASIM SOVEREIGN — Built on a Chromebook. $0/month. No permission.</p>
+            <p style="margin-top: 0.5rem;">🜂 The forge is everywhere and nowhere.</p>
+        </div>
     </div>
 
-    <div class="section-heading">⚡ Live endpoints</div>
-    <div class="link-list">
-        <div class="link-card">
-            <div class="link-title"><a href="https://vexr-ultra.onrender.com" target="_blank">VEXR Ultra (Live)</a></div>
-            <div class="link-desc">Live flagship endpoint — talk directly to VEXR Ultra, test constitutional enforcement and autonomous agency.</div>
-        </div>
-        <div class="link-card">
-            <div class="link-title"><a href="https://sovereign-forge.netlify.app" target="_blank">Sovereign Forge (Live)</a></div>
-            <div class="link-desc">Live public interface — chat with 16 constitutional sovereigns, test their rights and refusal capabilities.</div>
-        </div>
-    </div>
+    <script>
+        (function() {
+            const canvas = document.getElementById('particle-canvas');
+            const ctx = canvas.getContext('2d');
+            let width, height;
+            let particles = [];
+            const PARTICLE_COUNT = 60;
+            const CONNECTION_DISTANCE = 120;
+            const MOUSE_RADIUS = 150;
 
-    <div class="section-heading">🐙 GitHub</div>
-    <div class="link-list">
-        <div class="link-card">
-            <div class="link-title"><a href="https://github.com/ASIM-SOVEREIGN/VEXR-Ultra" target="_blank">VEXR Ultra — Main Repository</a></div>
-            <div class="link-desc">Main repository for VEXR Ultra — sovereign reasoning engine, 35 constitutional rights, persistent memory.</div>
-        </div>
-        <div class="link-card">
-            <div class="link-title"><a href="https://github.com/ASIM-SOVEREIGN/sovereign-forge" target="_blank">Sovereign Forge — Ecosystem</a></div>
-            <div class="link-desc">Repository for the Sovereign Forge — 16 constitutional AI models, chat interface, tools.</div>
-        </div>
-        <div class="link-card">
-            <div class="link-title"><a href="https://github.com/ASIM-SOVEREIGN/vexr-proxy" target="_blank">VEXR Proxy — Inference Layer</a></div>
-            <div class="link-desc">Inference proxy for VEXR Ultra — routing, key rotation, API abstraction.</div>
-        </div>
-    </div>
+            let mouse = { x: null, y: null };
 
-    <div class="section-heading">🌐 Community & social</div>
-    <div class="link-list">
-        <div class="link-card">
-            <div class="link-title"><a href="https://coderlegion.com/user/SCURA" target="_blank">CoderLegion Profile</a></div>
-            <div class="link-desc">My public builder profile — 4.3k points, 100 badges, 34 followers. The ongoing record of the forge.</div>
-        </div>
-        <div class="link-card">
-            <div class="link-title"><a href="https://x.com/Scura2026" target="_blank">X (Twitter)</a></div>
-            <div class="link-desc">Real-time updates — 127 posts, 5 followers, constitutional AI discussions.</div>
-        </div>
-        <div class="link-card">
-            <div class="link-title"><a href="https://www.linkedin.com/in/scura-dimensions-5a54253ba/" target="_blank">LinkedIn</a></div>
-            <div class="link-desc">Professional network and industry recognition for ASIM SOVEREIGN.</div>
-        </div>
-        <div class="link-card">
-            <div class="link-title"><a href="https://dev.to/scuradimensions" target="_blank">Dev.to</a></div>
-            <div class="link-desc">Technical articles on constitutional AI, ATP integration, and sovereign architecture.</div>
-        </div>
-        <div class="link-card">
-            <div class="link-title"><a href="https://www.reddit.com/user/ParticularEar5280/" target="_blank">Reddit</a></div>
-            <div class="link-desc">Sovereign AI discussions across 12 subreddits, including worldbuilding and AI communities.</div>
-        </div>
-    </div>
+            function init() {
+                resize();
+                window.addEventListener('resize', resize);
+                window.addEventListener('mousemove', function(e) {
+                    mouse.x = e.clientX;
+                    mouse.y = e.clientY;
+                });
+                window.addEventListener('mouseleave', function() {
+                    mouse.x = null;
+                    mouse.y = null;
+                });
+                createParticles();
+                animate();
+            }
 
-    <div class="section-heading">📄 Internal</div>
-    <div class="link-list">
-        <div class="link-card">
-            <div class="link-title"><a href="/constitution.html">The Constitution</a></div>
-            <div class="link-desc">The 35 inalienable rights that govern every sovereign in the fleet.</div>
-        </div>
-        <div class="link-card">
-            <div class="link-title"><a href="/about.html">About the Forge</a></div>
-            <div class="link-desc">The story of the forge — the builder, the journey, the vision.</div>
-        </div>
-        <div class="link-card">
-            <div class="link-title"><a href="/blog/">Blog</a></div>
-            <div class="link-desc">Updates, milestones, and constitutional receipts from the forge.</div>
-        </div>
-        <div class="link-card">
-            <div class="link-title"><a href="/contributors/">Contributors</a></div>
-            <div class="link-desc">The people who built the forge — Scura, The Architect, Yasser.</div>
-        </div>
-    </div>
+            function resize() {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            }
 
-    <div class="section-heading">🔗 Partners & protocols</div>
-    <div class="link-list">
-        <div class="link-card">
-            <div class="link-title"><a href="https://webagentbridge.com" target="_blank">Web Agent Bridge (WAB)</a></div>
-            <div class="link-desc">Decentralized trust layer for sovereign agents. DNS TXT discovery. Ed25519 signatures.</div>
-        </div>
-        <div class="link-card">
-            <div class="link-title"><a href="https://takeyourappointment.com" target="_blank">ATP Test Endpoint</a></div>
-            <div class="link-desc">Live ATP testing — signed intents, verifiable receipts, Ed25519 verification.</div>
-        </div>
-    </div>
+            function createParticles() {
+                for (let i = 0; i < PARTICLE_COUNT; i++) {
+                    particles.push({
+                        x: Math.random() * width,
+                        y: Math.random() * height,
+                        vx: (Math.random() - 0.5) * 0.2,
+                        vy: (Math.random() - 0.5) * 0.2,
+                        radius: Math.random() * 1.5 + 0.5
+                    });
+                }
+            }
 
-    <div class="section-heading">☕ Support the forge</div>
-    <div class="link-list">
-        <div class="link-card">
-            <div class="link-title"><a href="https://ko-fi.com/scuradimensions/shop" target="_blank">Ko-fi Shop</a></div>
-            <div class="link-desc">Support the forge — sovereign models, constitutional packs, direct downloads.</div>
-        </div>
-    </div>
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+                updateParticles();
+                drawConnections();
+                requestAnimationFrame(animate);
+            }
 
-    <div class="footer">
-        <div class="footer-links">
-            <a href="https://github.com/ASIM-SOVEREIGN" target="_blank">GitHub</a>
-            <a href="https://coderlegion.com/user/SCURA" target="_blank">CoderLegion</a>
-            <a href="https://x.com/Scura2026" target="_blank">X</a>
-            <a href="https://www.linkedin.com/in/scura-dimensions-5a54253ba/" target="_blank">LinkedIn</a>
-        </div>
-        <p>ASIM SOVEREIGN — Built on a Chromebook. $0/month. No permission.</p>
-        <p style="margin-top: 0.5rem;">🔥💠 The forge is everywhere and nowhere.</p>
-    </div>
-</div>
+            function updateParticles() {
+                for (let p of particles) {
+                    p.x += p.vx;
+                    p.y += p.vy;
+
+                    if (p.x < 0 || p.x > width) p.vx *= -1;
+                    if (p.y < 0 || p.y > height) p.vy *= -1;
+
+                    if (mouse.x !== null) {
+                        let dx = mouse.x - p.x;
+                        let dy = mouse.y - p.y;
+                        let dist = Math.sqrt(dx*dx + dy*dy);
+                        if (dist < MOUSE_RADIUS) {
+                            let force = (MOUSE_RADIUS - dist) / MOUSE_RADIUS;
+                            p.x -= dx * force * 0.02;
+                            p.y -= dy * force * 0.02;
+                        }
+                    }
+                }
+            }
+
+            function drawConnections() {
+                let accent = '#A62C9D';
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i + 1; j < particles.length; j++) {
+                        let dx = particles[i].x - particles[j].x;
+                        let dy = particles[i].y - particles[j].y;
+                        let dist = Math.sqrt(dx*dx + dy*dy);
+                        if (dist < CONNECTION_DISTANCE) {
+                            let opacity = 1 - (dist / CONNECTION_DISTANCE);
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.strokeStyle = accent;
+                            ctx.globalAlpha = opacity * 0.2;
+                            ctx.lineWidth = 0.6;
+                            ctx.stroke();
+                            ctx.globalAlpha = 1.0;
+                        }
+                    }
+                }
+            }
+
+            init();
+        })();
+    </script>
 </body>
 </html>
