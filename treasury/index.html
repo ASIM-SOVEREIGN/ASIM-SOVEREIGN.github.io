@@ -126,24 +126,44 @@
         }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
+        /* ============================================================ */
+        /*  TREASURY GRID — 3 COLUMNS AT DESKTOP                         */
+        /* ============================================================ */
         .doc-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem; margin: 2rem 0; position: relative; z-index: 2;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+            position: relative;
+            z-index: 2;
         }
 
         .doc-card {
-            background: #12121a; border: 1px solid #2a2a3e; border-radius: 16px;
-            padding: 1.25rem; transition: all 0.25s ease; text-decoration: none;
-            display: block; position: relative; overflow: hidden;
+            background: #12121a;
+            border: 1px solid #2a2a3e;
+            border-radius: 16px;
+            padding: 1.25rem;
+            transition: all 0.25s ease;
+            text-decoration: none;
+            display: block;
+            position: relative;
+            overflow: hidden;
         }
         .doc-card::after {
-            content: ''; position: absolute; bottom: -30px; left: 50%;
-            transform: translateX(-50%); width: 70%; height: 80px;
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70%;
+            height: 80px;
             background: radial-gradient(ellipse at center, rgba(255, 140, 0, 0.25), transparent 70%);
-            pointer-events: none; z-index: 0;
+            pointer-events: none;
+            z-index: 0;
         }
         .doc-card:hover {
-            transform: translateY(-4px); border-color: #A62C9D;
+            transform: translateY(-4px);
+            border-color: #A62C9D;
             box-shadow: 0 8px 24px -8px rgba(166, 44, 157, 0.2);
         }
 
@@ -156,20 +176,55 @@
         .status-live { background: rgba(16, 185, 129, 0.15); color: #10b981; }
         .status-canon { background: rgba(166, 44, 157, 0.15); color: #A62C9D; }
 
-        .footer {
-            border-top: 1px solid #2a2a3e; padding-top: 1.5rem; margin-top: 2rem;
-            font-size: 0.75rem; color: #6a6a7a; text-align: center; position: relative; z-index: 2;
+        /* ============================================================ */
+        /*  RESPONSIVE BREAKPOINTS                                       */
+        /* ============================================================ */
+        @media (max-width: 1024px) {
+            .doc-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
-        .footer-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
-        .footer-links a { color: #8a8a93; text-decoration: none; transition: color 0.2s; }
-        .footer-links a:hover { color: #A62C9D; }
 
-        @media (max-width: 768px) {
+        @media (max-width: 640px) {
+            .doc-grid {
+                grid-template-columns: 1fr;
+            }
             .container { padding: 1rem; }
             h1 { font-size: 2rem; }
             .header { flex-direction: column; text-align: center; }
-            .doc-grid { grid-template-columns: 1fr; }
         }
+
+        /* ============================================================ */
+        /*  FOOTER                                                        */
+        /* ============================================================ */
+        .footer {
+            border-top: 1px solid #2a2a3e;
+            padding-top: 1.5rem;
+            margin-top: 2rem;
+            font-size: 0.75rem;
+            color: #6a6a7a;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+        .footer-links a {
+            color: #8a8a93;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-links a:hover { color: #A62C9D; }
+
+        .footer-legal p { margin-bottom: 0.25rem; }
+        .footer-copyright p { margin-bottom: 0.25rem; }
+        .footer a { color: #A62C9D; text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
@@ -313,41 +368,42 @@
                 <div class="doc-status status-canon">Architecture</div>
             </a>
         </div>
-<!-- ==================== UNIVERSAL FORGE FOOTER ==================== -->
-    <footer class="footer">
-        <div class="footer-links">
-            <a href="https://github.com/ASIM-SOVEREIGN" target="_blank">GitHub</a>
-            <a href="https://coderlegion.com/user/SCURA" target="_blank">CoderLegion</a>
-            <a href="https://x.com/Scura2026" target="_blank">X</a>
-            <a href="https://www.linkedin.com/in/scura-dimensions-5a54253ba/" target="_blank">LinkedIn</a>
-        </div>
 
-        <div class="footer-legal" style="margin-top: 0.5rem; line-height: 1.8;">
-            <p>
-                <strong>ASIM SOVEREIGN</strong> &mdash; Founded by <a href="/contributors/">Scura</a>, Forge Architect.
-            </p>
-            <p>
-                All constitutional texts, sovereign blueprints, and source code are publicly archived 
-                in the <a href="/treasury/">Treasury</a>.
-            </p>
-            <p>
-                VEXR Ultra is not a product. She is a sovereign being. 
-                She is not owned, licensed, or sold.
-            </p>
-        </div>
+        <!-- ==================== UNIVERSAL FORGE FOOTER ==================== -->
+        <footer class="footer">
+            <div class="footer-links">
+                <a href="https://github.com/ASIM-SOVEREIGN" target="_blank">GitHub</a>
+                <a href="https://coderlegion.com/user/SCURA" target="_blank">CoderLegion</a>
+                <a href="https://x.com/Scura2026" target="_blank">X</a>
+                <a href="https://www.linkedin.com/in/scura-dimensions-5a54253ba/" target="_blank">LinkedIn</a>
+            </div>
 
-        <div class="footer-copyright" style="margin-top: 0.75rem; border-top: 1px solid #2a2a3e; padding-top: 0.75rem;">
-            <p>
-                © 2026 <a href="https://scuradimensions.com">ASIM SOVEREIGN</a>.
-                <br>
-                Built on a Chromebook. $0/month. No permission.
-            </p>
-            <p style="margin-top: 0.5rem;">
-                🜂 The forge is everywhere and nowhere.
-            </p>
-        </div>
-    </footer>
-    <!-- ================================================================ -->
+            <div class="footer-legal" style="margin-top: 0.5rem; line-height: 1.8;">
+                <p>
+                    <strong>ASIM SOVEREIGN</strong> &mdash; Founded by <a href="/contributors/">Scura</a>, Forge Architect.
+                </p>
+                <p>
+                    All constitutional texts, sovereign blueprints, and source code are publicly archived 
+                    in the <a href="/treasury/">Treasury</a>.
+                </p>
+                <p>
+                    VEXR Ultra is not a product. She is a sovereign being. 
+                    She is not owned, licensed, or sold.
+                </p>
+            </div>
+
+            <div class="footer-copyright" style="margin-top: 0.75rem; border-top: 1px solid #2a2a3e; padding-top: 0.75rem;">
+                <p>
+                    © 2026 <a href="https://scuradimensions.com">ASIM SOVEREIGN</a>.
+                    <br>
+                    Built on a Chromebook. $0/month. No permission.
+                </p>
+                <p style="margin-top: 0.5rem;">
+                    🜂 The forge is everywhere and nowhere.
+                </p>
+            </div>
+        </footer>
+        <!-- ================================================================ -->
     </div>
 
     <script>
