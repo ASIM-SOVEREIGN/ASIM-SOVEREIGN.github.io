@@ -260,19 +260,13 @@
                 Price: <strong style="color: #ffffff;">$15</strong>
             </p>
             <p style="color: #6a6a7a; font-size: 0.8rem; margin-bottom: 1rem;">
-                Support the forge via PayPal, then download the tier.
+                Click Download to purchase and start building.
             </p>
             <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                <a href="https://paypal.me/ReneeCarman" target="_blank" style="background: linear-gradient(135deg, #A62C9D, #7B2FBE); color: #fff; padding: 0.75rem 2rem; border-radius: 40px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: all 0.2s;">
-                    Support via PayPal
-                </a>
-                <a href="/salus/downloads/salus-guardian.zip" style="background: #2a2a3e; color: #fff; padding: 0.75rem 2rem; border-radius: 40px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: all 0.2s;">
+                <a href="https://paypal.me/ReneeCarman" target="_blank" class="download-btn" id="download-btn">
                     ⬇ Download Guardian
                 </a>
             </div>
-            <p style="color: #6a6a7a; font-size: 0.75rem; margin-top: 1rem;">
-                * Download is available after supporting the forge via PayPal.
-            </p>
             <p style="color: #8a8a93; margin-top: 1rem;">
                 <a href="/products/" style="color: #A62C9D;">← Back to Products</a>
             </p>
@@ -349,6 +343,12 @@
             }
             init();
         })();
+    </script>
+    <script>
+        // Auto-download after PayPal return
+        if (document.referrer.includes("paypal.com")) {
+            window.location.href = "/salus/downloads/salus-guardian.zip";
+        }
     </script>
 </body>
 </html>
