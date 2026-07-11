@@ -263,10 +263,7 @@
                 Download the foundational tier and start building sovereignty.
             </p>
             <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                <a href="https://paypal.me/ReneeCarman" target="_blank" style="background: linear-gradient(135deg, #A62C9D, #7B2FBE); color: #fff; padding: 0.75rem 2rem; border-radius: 40px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: all 0.2s;">
-                    Support the Forge
-                </a>
-                <a href="/salus/downloads/salus-sentinel.zip" style="background: #2a2a3e; color: #fff; padding: 0.75rem 2rem; border-radius: 40px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: all 0.2s;">
+                <a href="https://paypal.me/ReneeCarman" target="_blank" class="download-btn" id="download-btn">
                     ⬇ Download Sentinel
                 </a>
             </div>
@@ -346,6 +343,12 @@
             }
             init();
         })();
+    </script>
+    <script>
+        // Auto-download after PayPal return
+        if (document.referrer.includes("paypal.com")) {
+            window.location.href = "/salus/downloads/salus-sentinel.zip";
+        }
     </script>
 </body>
 </html>
