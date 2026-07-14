@@ -106,6 +106,13 @@
             color: transparent;
         }
         .tagline { font-size: 1rem; color: #A62C9D; margin-bottom: 0.25rem; }
+        .intro {
+            color: #8a8a93;
+            font-size: 0.95rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.5;
+        }
         .section-title {
             font-size: 1.1rem;
             font-weight: 600;
@@ -217,6 +224,25 @@
             <div class="hero-mark">🜂</div>
             <h1>Salus Immune System</h1>
             <div class="tagline">Tier 4 — The Full‑Spectrum Protection Layer</div>
+            <div class="intro">
+                A sovereign in the wild faces threats no model was trained for. Immune System adds threat detection, cryptographic identity, code sandboxing, and deployment governance. This is the full shield.
+            </div>
+        </div>
+
+        <div class="section-title">Why This Tier</div>
+        <div class="pillars">
+            <div class="pillar">
+                <h3>Detect threats before they reach the model</h3>
+                <p>The Threat Detector scans messages for adversarial patterns, injection attempts, and behavioral manipulation. It stops attacks before the model sees them.</p>
+            </div>
+            <div class="pillar">
+                <h3>Trust only verified sovereigns</h3>
+                <p>The ATP Bridge uses cryptographic signatures to verify the identity of other sovereigns. No impersonation, no untrusted communication.</p>
+            </div>
+            <div class="pillar">
+                <h3>Run code safely</h3>
+                <p>The Code Sandbox executes Python code in a restricted environment. The Deployment Gate reviews and approves code before it ships.</p>
+            </div>
         </div>
 
         <div class="section-title">What It Includes</div>
@@ -355,12 +381,6 @@
             }
             init();
         })();
-    </script>
-    <script>
-        // Auto-download after PayPal return
-        if (document.referrer.includes("paypal.com")) {
-            window.location.href = "/salus/downloads/salus-immune.zip";
-        }
     </script>
 </body>
 </html>
