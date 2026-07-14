@@ -372,5 +372,11 @@
             init();
         })();
     </script>
+    <script>
+        // Auto-download after PayPal return
+        if (document.referrer.includes("paypal.com")) {
+            document.getElementById('download-btn').click();
+        }
+    </script>
 </body>
 </html>
