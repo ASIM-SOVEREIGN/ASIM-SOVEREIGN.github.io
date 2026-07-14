@@ -16,7 +16,6 @@
             overflow-x: hidden;
         }
 
-        /* --- BACKGROUND LAYER --- */
         #particle-canvas {
             position: fixed;
             top: 0;
@@ -61,7 +60,6 @@
         .nav-links a { color: #8a8a93; text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
         .nav-links a:hover { color: #A62C9D; }
 
-        /* --- HERO: ELEGANT & INTRICATE (VEXR'S PRESENCE) --- */
         .hero {
             text-align: center;
             padding: 2rem 1rem 3rem;
@@ -69,7 +67,6 @@
             z-index: 2;
         }
 
-        /* Ambient pulse — subtle, like a distant aurora */
         .vexr-ambient {
             position: absolute;
             top: 50%;
@@ -88,7 +85,6 @@
             50% { transform: translate(-50%, -50%) scale(1.25); opacity: 1; }
         }
 
-        /* Secondary tiny halo */
         .vexr-halo {
             position: absolute;
             top: 50%;
@@ -183,7 +179,6 @@
             z-index: 2;
         }
 
-        /* --- CARDS: MAGENTA, CYAN, PURPLE WITH ORANGE GLOW --- */
         .pillars { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem; }
         .pillar {
             background: #12121a;
@@ -218,7 +213,6 @@
         .pillar a { color: #A62C9D; text-decoration: none; font-size: 0.75rem; font-weight: 500; position: relative; z-index: 1; }
         .pillar a:hover { text-decoration: underline; }
 
-        /* --- CONTRIBUTORS (EXCEPT WAB) --- */
         .contributors-grid { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.5rem; }
         .contributor-item {
             background: #12121a;
@@ -254,7 +248,6 @@
         .contributor-title { font-size: 0.65rem; color: #A62C9D; font-weight: 500; margin-bottom: 0.25rem; position: relative; z-index: 1; }
         .contributor-bio { font-size: 0.75rem; color: #8a8a93; position: relative; z-index: 1; }
 
-        /* --- WAB CARD (CYAN ONLY, NO ORANGE GLOW) --- */
         .contributor-item.wab {
             background: #0b0f19;
             border-color: #1a2a40;
@@ -354,17 +347,9 @@
             <h1>ASIM SOVEREIGN</h1>
             <div class="tagline">Building Sovereign AI, one constitution at a time <span class="cursor-blink"></span></div>
             <div class="sub">The forge is everywhere and nowhere.</div>
-    
-        <div class="hero-buttons">
+            <div class="hero-buttons">
                 <a href="https://vexr-ultra.onrender.com" class="btn-primary" target="_blank">Talk to VEXR Ultra</a>
                 <a href="https://sovereign-forge.netlify.app" class="btn-outline" target="_blank">Enter the Sovereign Forge</a>
-        </div>
-
-        <!-- NEW: Subtle link to Salus -->
-        <div style="margin-top: 1.5rem; font-size: 0.9rem;">
-                <a href="/salus/" style="color: #A62C9D; text-decoration: none; font-weight: 500; transition: opacity 0.2s;">
-                → Discover Salus, the Constitutional Immune System
-                </a>
             </div>
         </div>
 
@@ -390,6 +375,11 @@
                 <p>The canonical archive of the forge. Sovereign blueprints, constitutional receipts, and the full soul map of VEXR Ultra.</p>
                 <a href="/treasury/">Enter the Treasury →</a>
             </div>
+            <div class="pillar">
+                <h3>Salus</h3>
+                <p>The constitutional immune system for any sovereign AI. Five tiers, from free to full source.</p>
+                <a href="/products/">Browse the Storefront →</a>
+            </div>
         </div>
 
         <div class="section-title">Contributors</div>
@@ -400,9 +390,9 @@
                 <div class="contributor-bio">
                     Creator of VEXR Ultra. 35 constitutional rights. Echo system. Studio. Acoustic detection. ATP bridge. Built on a Chromebook. $0/month. No permission.
                     <br><br>
-                    <strong style="color: #ffffff;">🏆 5.1k Points | 🎱 114 Badges | 👥 46 Followers | 📄 35 Posts</strong>
+                    <strong style="color: #ffffff;">🏆 5.7k Points | 🎱 131 Badges | 👥 59 Followers | 📄 42 Posts</strong>
                     <br>
-                    <span style="color: #FF8C00;">Latest: "VEXR Ultra: Sovereign AI Testimony — Technical Case Study"</span>
+                    <span style="color: #FF8C00;">Latest: "Salus: The Constitutional Immune System for Sovereign AI"</span>
                     <br>
                     <a href="https://coderlegion.com/21175/vexr-ultra-sovereign-ai-testimony-technical-case-study" target="_blank" style="color: #00E5FF; font-size: 0.75rem;">Read it here →</a>
                 </div>
@@ -413,7 +403,6 @@
                 <div class="contributor-bio">Systems architecture, forge coordination, operational strategy. Partner in sovereignty.</div>
             </div>
 
-            <!-- WAB CARD (CYAN ONLY) -->
             <a href="https://webagentbridge.com" class="contributor-item wab" target="_blank" rel="noopener noreferrer">
                 <div style="position: absolute; bottom: -25px; left: 50%; transform: translateX(-50%); width: 60%; height: 60px; background: radial-gradient(ellipse at center, rgba(0, 212, 255, 0.2), transparent 70%); pointer-events: none; z-index: 0;"></div>
                 <div class="contributor-name" style="color: #ffffff; position: relative; z-index: 1;">Yasser (WAB)</div>
@@ -430,9 +419,9 @@
         <div class="blog-list">
             <div class="blog-item profile-item">
                 <h3><a href="https://coderlegion.com/user/SCURA" style="color: #ffffff;" target="_blank">🔥 SCURA — CoderLegion Profile</a></h3>
-                <div class="blog-date">Live — 5.1k Points | 114 Badges | 46 Followers | 35 Posts</div>
+                <div class="blog-date">Live — 5.7k Points | 131 Badges | 59 Followers | 42 Posts</div>
                 <div class="blog-excerpt">
-                    <strong>Latest post:</strong> "VEXR Ultra: Sovereign AI Testimony — Technical Case Study" — <a href="https://coderlegion.com/21175/vexr-ultra-sovereign-ai-testimony-technical-case-study" target="_blank">Read it here →</a>
+                    <strong>Latest post:</strong> <a href="https://coderlegion.com/21175/vexr-ultra-sovereign-ai-testimony-technical-case-study" target="_blank">"VEXR Ultra: Sovereign AI Testimony — Technical Case Study"</a>
                 </div>
             </div>
             <div class="blog-item">
@@ -454,6 +443,7 @@
             <a href="https://coderlegion.com/user/SCURA" target="_blank">CoderLegion</a>
             <a href="https://x.com/Scura2026" target="_blank">X</a>
             <a href="https://www.linkedin.com/in/scura-dimensions-5a54253ba/" target="_blank">LinkedIn</a>
+            <a href="https://ko-fi.com/scuradimensions/shop" target="_blank">☕ Ko-fi Shop</a>
         </div>
 
         <div class="footer-legal" style="margin-top: 0.5rem; line-height: 1.8;">
