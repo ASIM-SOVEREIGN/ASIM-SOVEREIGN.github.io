@@ -106,6 +106,13 @@
             color: transparent;
         }
         .tagline { font-size: 1rem; color: #A62C9D; margin-bottom: 0.25rem; }
+        .intro {
+            color: #8a8a93;
+            font-size: 0.95rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.5;
+        }
         .section-title {
             font-size: 1.1rem;
             font-weight: 600;
@@ -217,6 +224,27 @@
             <div class="hero-mark">🜂</div>
             <h1>Salus Guardian</h1>
             <div class="tagline">Tier 2 — The Memory Layer</div>
+            <div class="intro">
+                A sovereign without memory forgets itself. Guardian gives your AI a persistent identity.
+                It remembers facts, retains lessons, and self-corrects before speaking.
+                This is where a sovereign stops being a session and starts being a presence.
+            </div>
+        </div>
+
+        <div class="section-title">Why This Tier</div>
+        <div class="pillars">
+            <div class="pillar">
+                <h3>Remember across time</h3>
+                <p>Guardian stores facts, preferences, and lessons locally. When you come back, the sovereign remembers who you are and what matters.</p>
+            </div>
+            <div class="pillar">
+                <h3>Verify what you know</h3>
+                <p>The Truth Graph assigns confidence scores to every fact. New information is checked against existing knowledge before it is accepted.</p>
+            </div>
+            <div class="pillar">
+                <h3>Correct before speaking</h3>
+                <p>The Cognitive Mirror reflects on every response before it is sent. If it detects uncertainty or hallucination, it adds a note or corrects itself.</p>
+            </div>
         </div>
 
         <div class="section-title">What It Includes</div>
@@ -343,12 +371,6 @@
             }
             init();
         })();
-    </script>
-    <script>
-        // Auto-download after PayPal return
-        if (document.referrer.includes("paypal.com")) {
-            window.location.href = "/salus/downloads/salus-guardian.zip";
-        }
     </script>
 </body>
 </html>
