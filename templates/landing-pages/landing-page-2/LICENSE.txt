@@ -1,0 +1,17 @@
+
+```text
+SOVEREIGN TEMPLATE — LICENSE
+
+This template is licensed for personal, internal, or commercial use in your own projects.
+
+You are permitted to:
+- Use this template for personal or commercial projects
+- Modify and customize the template for your own use
+- Use the template for client projects (agency use)
+
+You are NOT permitted to:
+- Redistribute, resell, or open-source the template code
+- Claim the template as your own original work
+- Use the template to create competing template products
+
+Built by [YOUR NAME] — [YOUR WEBSITE]
