@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400" width="500" height="400">
+    <rect width="500" height="400" fill="#f0f0f0" rx="16" />
+    <rect x="50" y="50" width="400" height="200" fill="#ddd" rx="8" />
+    <rect x="100" y="280" width="300" height="40" fill="#ccc" rx="4" />
+    <rect x="150" y="330" width="200" height="30" fill="#ccc" rx="4" />
+    <text x="250" y="160" font-family="Inter, sans-serif" font-size="24" fill="#999" text-anchor="middle">
+        Hero Image
+    </text>
+    <text x="250" y="300" font-family="Inter, sans-serif" font-size="16" fill="#aaa" text-anchor="middle">
+        Replace with your own image
+    </text>
+</svg>
