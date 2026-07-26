@@ -1,0 +1,408 @@
+/* ============================================================
+   LANDING PAGE #2 — CLEAN/MINIMAL STYLE
+   CUSTOMIZATION: Edit the :root variables below to match your brand.
+   ============================================================ */
+
+/* ---------- ROOT VARIABLES ---------- */
+:root {
+    --primary-color: #2563EB;          /* [YOUR PRIMARY COLOR] */
+    --primary-dark: #1D4ED8;           /* [YOUR PRIMARY DARK] */
+    --secondary-color: #111827;        /* [YOUR SECONDARY COLOR] */
+    --text-color: #111827;             /* [YOUR TEXT COLOR] */
+    --text-light: #6B7280;             /* [YOUR LIGHT TEXT] */
+    --background-color: #ffffff;       /* [YOUR BACKGROUND] */
+    --background-light: #F9FAFB;       /* [YOUR LIGHT BACKGROUND] */
+    --border-color: #E5E7EB;           /* [YOUR BORDER COLOR] */
+    --font-family: 'Inter', sans-serif;
+    --max-width: 1200px;
+    --border-radius: 12px;
+    --box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+}
+
+/* ---------- RESET & BASE ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-family);
+    color: var(--text-color);
+    background: var(--background-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ---------- TYPOGRAPHY ---------- */
+h1, h2, h3 {
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: 48px;
+    font-weight: 800;
+}
+
+h2 {
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+h3 {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+p {
+    color: var(--text-light);
+}
+
+/* ---------- BUTTONS ---------- */
+.btn {
+    display: inline-block;
+    padding: 12px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.3);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--text-color);
+    border: 2px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+    background: var(--background-light);
+    border-color: var(--text-color);
+}
+
+.btn-large {
+    padding: 16px 40px;
+    font-size: 18px;
+}
+
+/* ---------- HEADER ---------- */
+header {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border-color);
+    background: var(--background-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.logo img {
+    height: 32px;
+    width: auto;
+}
+
+nav ul {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+    align-items: center;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+nav a:hover {
+    color: var(--primary-color);
+}
+
+/* ---------- HERO (Centered, Stacked) ---------- */
+#hero {
+    padding: 100px 0 80px;
+    text-align: center;
+}
+
+#hero .container {
+    max-width: 800px;
+}
+
+.hero-content h1 {
+    margin-bottom: 16px;
+}
+
+.hero-content .subtitle {
+    font-size: 20px;
+    color: var(--text-light);
+    margin-bottom: 32px;
+}
+
+.cta-group {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+}
+
+.trust-badge {
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+/* ---------- FEATURES ---------- */
+#features {
+    padding: 80px 0;
+    background: var(--background-light);
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 32px;
+    margin-top: 48px;
+}
+
+.feature-card {
+    padding: 32px;
+    background: var(--background-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+}
+
+.feature-card img {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 16px;
+}
+
+/* ---------- PRICING ---------- */
+#pricing {
+    padding: 80px 0;
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 32px;
+    margin-top: 48px;
+}
+
+.pricing-card {
+    background: var(--background-color);
+    padding: 40px 32px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    border: 1px solid var(--border-color);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.pricing-card:hover {
+    transform: translateY(-4px);
+}
+
+.pricing-card.featured {
+    border: 2px solid var(--primary-color);
+    position: relative;
+}
+
+.badge {
+    background: var(--primary-color);
+    color: #fff;
+    padding: 4px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-block;
+    margin-bottom: 12px;
+}
+
+.pricing-card .price {
+    font-size: 40px;
+    font-weight: 800;
+    margin: 16px 0 24px;
+}
+
+.pricing-card ul {
+    list-style: none;
+    margin: 0 0 32px 0;
+    text-align: left;
+}
+
+.pricing-card li {
+    padding: 8px 0;
+    color: var(--text-light);
+}
+
+.pricing-card .btn {
+    width: 100%;
+    text-align: center;
+}
+
+/* ---------- FAQ ---------- */
+#faq {
+    padding: 80px 0;
+    background: var(--background-light);
+}
+
+.faq-list {
+    max-width: 700px;
+    margin: 48px auto 0;
+}
+
+details {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border-color);
+    cursor: pointer;
+}
+
+summary {
+    font-weight: 600;
+    padding: 8px 0;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+summary::-webkit-details-marker {
+    display: none;
+}
+
+summary::after {
+    content: '+';
+    font-size: 20px;
+    color: var(--primary-color);
+    transition: transform 0.3s ease;
+}
+
+details[open] summary::after {
+    content: '−';
+}
+
+details p {
+    padding: 12px 0 4px 0;
+    color: var(--text-light);
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+    padding: 40px 0;
+    background: var(--secondary-color);
+    color: #fff;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 24px;
+}
+
+.footer-links a {
+    color: #aaa;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: #fff;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 32px;
+    }
+    h2 {
+        font-size: 28px;
+    }
+    header .container {
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+    nav ul {
+        gap: 16px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .pricing-grid {
+        grid-template-columns: 1fr;
+    }
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .btn-large {
+        padding: 12px 24px;
+        font-size: 16px;
+    }
+    .hero-content .subtitle {
+        font-size: 18px;
+    }
+}
